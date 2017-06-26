@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14979322930740" configfile="/reservaVuelos_Web/web/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="pages/template/menu.xhtml" x="276" y="298" id="pf14984398810520" referenceLink="//@navigationRule.5/@fromViewId|" outlinks="pf14984401286357 pf14984401286358 pf14984401286359 pf149844012863510 pf149844012863511 pf149844012863512" path="/pages/template/menu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/administracion/paso1Fecha.xhtml" x="504" y="12" id="pf14984398810531" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14984401286357" path="/pages/administracion/paso1Fecha.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/administracion/paso2Vuelos.xhtml" x="552" y="108" id="pf14984398810532" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14984401286358" path="/pages/administracion/paso2Vuelos.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/administracion/paso3Precio.xhtml" x="600" y="228" id="pf14984398810533" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf14984401286359" path="/pages/administracion/paso3Precio.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/administracion/paso4Pasajeros.xhtml" x="600" y="336" id="pf14984398810534" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf149844012863510" path="/pages/administracion/paso4Pasajeros.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/administracion/paso5Pago.xhtml" x="592" y="468" id="pf14984398810535" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf149844012863511" path="/pages/administracion/paso5Pago.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/administracion/paso6Confirmacion.xhtml" x="492" y="588" id="pf14984398810536" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf149844012863512" path="/pages/administracion/paso6Confirmacion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/seguridad/presentacion.xhtml" x="24" y="480" id="pf149844025276913" referenceLink="//@navigationRule.6/@navigationCase.0/@toViewId|" path="/pages/seguridad/presentacion.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.html" x="99" y="38" id="pf149844964704016" outlinks="pf149844968491217" path="/index.html"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/seguridad/login.xhtml" x="38" y="216" id="pf149844968491218" inlinks="pf149844968491217" path="/pages/seguridad/login.xhtml"/>
+  <links id="pf14984401286357" target="pf14984398810531" source="pf14984398810520" outcome="paso1"/>
+  <links id="pf14984401286358" target="pf14984398810532" source="pf14984398810520" outcome="paso2"/>
+  <links id="pf14984401286359" target="pf14984398810533" source="pf14984398810520" outcome="paso3"/>
+  <links id="pf149844012863510" target="pf14984398810534" source="pf14984398810520" outcome="paso4"/>
+  <links id="pf149844012863511" target="pf14984398810535" source="pf14984398810520" outcome="paso5"/>
+  <links id="pf149844012863512" target="pf14984398810536" source="pf14984398810520" outcome="paso6"/>
+  <links id="pf149844968491217" target="pf149844968491218" source="pf149844964704016" outcome="goLogin"/>
+</pageflow:Pageflow>

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>UTPL:.Sistema de Reserva de Vuelos.::</title>
+<!-- Incluir referencia a hoja de estilo -->
+<link rel="stylesheet" type="text/css" href="./resources/css/pelsys.css">
+<!-- Incluir referencia a archivo javascript -->
+<script type="text/javascript" src="./resources/js/pelsys.js"></script>
+</head>
+<body class="fondoLogin">
+	<!-- Elemento principal para procesar un formulario, puede haber varios formularios 
+		- El atributo id se utiliza generalmente para Ajax, el atributo name para servlet
+		- Existen dos tipos de métodos para procesar la información:
+			a) get -> Envia los parámetros al Servlet/JSP a través de la URL
+			b) pos -> Envia los parámetros al Servlet/JSP en background, es más segura
+			
+		  De los cuales depende el servlet, si utilizan get se procesará en el método doGet;
+		  si utilizan post se procesará en el método doPost del Servlet	
+		
+		-El atributo action indica el recurso al cual se va a llamar ejemplo:
+		servlet, pàgina html, página jsp, archivo, mail
+	-->
+	<center>
+		<fieldset>
+			<legend>
+				<label>RESEVA DE VUELOS</label>
+			</legend>
+			<form id="frmLog" name="frmLog">
+				<table>
+					<tr>
+						<td colspan="2"><img alt="Pelsys"
+							src="./resources/img/banner.png" width="303px" height="108px">
+						</td>
+					</tr>
+					<!--  <tr>
+						<td><label class="etiqueta">Usuario :</label></td>
+						<td><input id="idTxtNomUsu" name="txtNomUsu" type="text"
+							maxlength="10"></td>
+					</tr>
+					<tr>
+						<td><label class="etiqueta">Clave :</label></td>
+						<td><input id="idTxtClaUsu" name="txtClaUsu" type="password"
+							maxlength="10"></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input class="estiloBoton" name="btnIngApp"
+							type="submit" value="Ingresar"
+							onclick="return validarLogin('idTxtNomUsu','txtClaUsu');"></td>
+					</tr> -->
+					<tr>
+						<td colspan="3">
+							<p>
+								<a href="pages/seguridad/login.jsf">Ingresar al sistema</a>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</form>
+		</fieldset>
+	</center>
+</body>
+</html>

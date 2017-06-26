@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<p:layout fullPage="true">
+		<!-- seccion cabecera -->
+		<p:layoutUnit position="north" size="150">
+			<p:graphicImage library="img" name="banner.jpeg"></p:graphicImage>
+		</p:layoutUnit>
+
+		<!-- seccion contenido -->
+		<p:layoutUnit position="center">
+			<!-- iu:insert define la seccion que se va a perzonalizarse -->
+			<ui:insert name="contenido">
+				<h:outputLabel value="estoy en contenido" />
+			</ui:insert>
+		</p:layoutUnit>
+
+		<!-- seccion menu  -->
+		<p:layoutUnit position="west" size="200" header="Menú"
+			collapsible="true">
+			<h:form id="frmMenu">
+				<p:panelMenu>
+					<p:submenu label="Administracion">
+						<p:menuitem value="Catálogos" />
+					</p:submenu>
+
+					<p:submenu label="Seguridad">
+						<p:menuitem value="Rol" />
+					</p:submenu>
+
+					<p:submenu label="Inventario">
+						<p:menuitem value="Producto" />
+					</p:submenu>
+				</p:panelMenu>
+			</h:form>
+		</p:layoutUnit>
+
+		<!-- seccion ayuda -->
+		<p:layoutUnit position="east" size="200" collapsed="true"
+			collapsible="true">
+			<ui:insert name="ayuda">
+
+			</ui:insert>
+		</p:layoutUnit>
+	</p:layout>
+</body>
+</html>
