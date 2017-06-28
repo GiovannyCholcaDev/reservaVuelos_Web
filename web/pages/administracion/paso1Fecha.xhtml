@@ -8,13 +8,15 @@
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
 		<p:panelGrid columns="1" style="width:100%">
+			<button
+				onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente</button>
+
 			<f:facet name="header">
 				<h:outputLabel value="Bienvenidos paso 1" />
 			</f:facet>
-			<p:graphicImage library="img" name="banner2.jpeg" />
-			<p:inputTextarea cols="40" rows="10"
-				value="Sistema de Contabilidad de NIFFS con las últimas reformas del Gobierno central"
-				readonly="true" />
+
+
+
 		</p:panelGrid>
 	</ui:define>
 

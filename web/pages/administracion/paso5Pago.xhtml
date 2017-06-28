@@ -1,9 +1,25 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-	<ui:composition template="">
-	</ui:composition>
+<ui:composition template="../template/templateGeneral.xhtml">
+	<ui:define name="contenido">
+		<p:panelGrid columns="1" style="width:100%">
+			<button
+				onclick="setStepIndex([{name:'index', value:3}]);return false">Atras</button>
+			<button
+				onclick="setStepIndex([{name:'index', value:5}]);return false">Siguiente</button>
+			<f:facet name="header">
+				<h:outputLabel value="Selecciona tu medio de pago" />
+
+			</f:facet>
+
+			<h:outputLabel value="He leído y estoy de acuerdo con las condiciones relacionadas a la compra. " />
+		</p:panelGrid>
+	</ui:define>
+
+</ui:composition>
 </html>
