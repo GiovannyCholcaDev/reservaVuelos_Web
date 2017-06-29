@@ -1,8 +1,6 @@
 package ec.utpl.controllers;
 
-import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.ejb.EJB;
@@ -12,8 +10,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
 
 import org.primefaces.context.RequestContext;
 

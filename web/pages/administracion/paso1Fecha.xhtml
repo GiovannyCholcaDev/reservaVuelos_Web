@@ -7,17 +7,48 @@
 
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
-		<p:panelGrid columns="1" style="width:100%">
-			<button
-				onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente</button>
+		<button onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente</button>
+		<!-- 		<p:panelGrid columns="1" style="width:100%"> -->
+		<!-- 			<f:facet name="header"> -->
+		<!-- 				<h:outputLabel value="Compra de pasajes" /> -->
+		<!-- 			</f:facet> -->
+		<!-- 		</p:panelGrid> -->
 
-			<f:facet name="header">
-				<h:outputLabel value="Bienvenidos paso 1" />
-			</f:facet>
+		<p:panel header="Compra de pasajes" style="text-align:center;">
+			<h:panelGrid columns="3" cellspacing="5"
+				style=" width:50%; text-align:left;">
+
+				<p:commandButton value="Aceptar" action="#{paso1Ctr.buscarLista()}" />
+
+				<!-- <h:outputText value="Solo ida: " />
+				<p:selectBooleanCheckbox value="#{selectBooleanView.value2}">
+					<p:ajax update="msg" listener="#{selectBooleanView.addMessage}" />
+				</p:selectBooleanCheckbox>
+
+				<h:outputText value="Ajax: " />
+				<p:selectBooleanCheckbox value="#{selectBooleanView.value2}">
+					<p:ajax update="msg" listener="#{selectBooleanView.addMessage}" />
+				</p:selectBooleanCheckbox>
+
+
+				<p:outputLabel value="DropDown:" for="dd" />
+				<p:autoComplete id="dd" dropdown="true"
+					value="#{autoCompleteView.txt6}"
+					completeMethod="#{autoCompleteView.completeText}" />
 
 
 
-		</p:panelGrid>
+				<p:outputLabel for="console" value="Basic:" />
+				<p:selectOneMenu id="console" value="#{selectOneMenuView.console}"
+					style="width:125px">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+					<f:selectItem itemLabel="PS4" itemValue="PS4" />
+					<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+				</p:selectOneMenu> -->
+			</h:panelGrid>
+		</p:panel>
+
 	</ui:define>
 
 </ui:composition>
