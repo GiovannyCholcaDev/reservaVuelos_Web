@@ -17,27 +17,33 @@
 		<p:panel header="Compra de pasajes" style="text-align:center;">
 			<h:panelGrid columns="3" cellspacing="5"
 				style=" width:50%; text-align:left;">
-
 				<p:commandButton value="Aceptar" action="#{paso1Ctr.buscarLista()}" />
+			</h:panelGrid>
 
-				<!-- <h:outputText value="Solo ida: " />
-				<p:selectBooleanCheckbox value="#{selectBooleanView.value2}">
-					<p:ajax update="msg" listener="#{selectBooleanView.addMessage}" />
-				</p:selectBooleanCheckbox>
+			<h:panelGrid columns="3" cellspacing="5"
+				style=" width:50%; text-align:left;">
 
-				<h:outputText value="Ajax: " />
-				<p:selectBooleanCheckbox value="#{selectBooleanView.value2}">
-					<p:ajax update="msg" listener="#{selectBooleanView.addMessage}" />
-				</p:selectBooleanCheckbox>
+				<h:panelGrid columns="1">
+					<p:selectOneRadio id="idCabina" value="#{paso1Ctr.idayVuela}" layout="grid" columns="1">
+						<f:selectItem itemLabel="Ida y vuelta" itemValue="vuela" />
+						<f:selectItem itemLabel="Sólo ida" itemValue="ida" />
+					</p:selectOneRadio>
+				</h:panelGrid>
+
+				<h:panelGrid columns="1" cellpadding="5">
+					<p:outputLabel value="Origen:" for="origen" />
+					<p:autoComplete id="origen" dropdown="true" value="#{paso1Ctr.aeropuertoIdaSelect}" completeMethod="#{paso1Ctr.completeAeropuerto}" 
+									var="aer" itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer.nombreAeropuerto}"/>
+				</h:panelGrid>
 
 
-				<p:outputLabel value="DropDown:" for="dd" />
-				<p:autoComplete id="dd" dropdown="true"
-					value="#{autoCompleteView.txt6}"
-					completeMethod="#{autoCompleteView.completeText}" />
-
-
-
+				<h:panelGrid columns="1"  cellpadding="5">
+					<p:outputLabel value="Destino:" for="destino" />
+					<p:autoComplete id="destino" dropdown="true" value="#{paso1Ctr.aeropuertoLlegadaSelect}" completeMethod="#{paso1Ctr.listaAeropuertoLLegada}" />
+				</h:panelGrid>
+				<!-- 
+				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
+				</h:panelGrid>
 				<p:outputLabel for="console" value="Basic:" />
 				<p:selectOneMenu id="console" value="#{selectOneMenuView.console}"
 					style="width:125px">
