@@ -1,22 +1,25 @@
 package ec.utpl.controllers;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
 
 import com.utpl.reserva.vuelos.negocio.cliente.IAdminCrud;
 import com.utpl.reserva.vuelos.negocio.dao.AeropuertoDAO;
 import com.utpl.reserva.vuelos.negocio.dao.ClasificacionCabinaDAO;
 
+import ec.utpl.service.AeropuertoService;
 import modelo.Aeropuerto;
 import modelo.Clasificacioncabina;
 
 @ManagedBean(name = "paso1Ctr")
-@ViewScoped
+@SessionScoped
 public class Paso1FechaController {
 
 	private Boolean soloIda;
@@ -26,7 +29,14 @@ public class Paso1FechaController {
 	private List<Clasificacioncabina> listaCabina;
 	private Aeropuerto aeropuertoIdaSelect;
 	private Aeropuerto aeropuertoLlegadaSelect;
-	
+	private Integer idAeropuertoSelect;
+	private Date fechaIdaSelect;
+	private Date fechaVueltaSelect;
+	private Clasificacioncabina cabinaSelect;
+	private Integer idCabinaSelect;
+	private List<Integer> numPasajeros;
+	private Integer numPasajeroSelect;
+
 	@EJB
 	private IAdminCrud adminCrud;
 
@@ -36,40 +46,63 @@ public class Paso1FechaController {
 	@EJB
 	private ClasificacionCabinaDAO clasificacionCabinaDao;
 
+	@ManagedProperty("#{aeropuertoService}")
+	private AeropuertoService aeropuertoservice;
+
 	public Paso1FechaController() {
-		
-		listaAeropuertoIda = new ArrayList<Aeropuerto>();
-		listaAeropuertoLLegada = new ArrayList<Aeropuerto>();
+		// listaAeropuertoIda = new ArrayList<Aeropuerto>();
+		// listaAeropuertoLLegada = new ArrayList<Aeropuerto>();
 		listaCabina = new ArrayList<Clasificacioncabina>();
+		aeropuertoIdaSelect = new Aeropuerto();
+		aeropuertoLlegadaSelect = new Aeropuerto();
+		cabinaSelect = new Clasificacioncabina();
+		numPasajeros = new ArrayList<Integer>();
 	}
 
 	@PostConstruct
 	private void start() {
 		try {
 			System.out.println("entro en start");
-			List<Aeropuerto> listaAeropuerto = new ArrayList<Aeropuerto>();
-			listaAeropuerto = aeropuertoDao.obtenerListaAeropuertos();
-			listaAeropuertoIda = new ArrayList<Aeropuerto>(listaAeropuerto);
-			listaAeropuertoLLegada = new ArrayList<Aeropuerto>(listaAeropuerto);
-
+			// List<Aeropuerto> listaAeropuerto = new ArrayList<Aeropuerto>();
+			// listaAeropuerto = aeropuertoDao.obtenerListaAeropuertos();
+			// listaAeropuertoIda = new ArrayList<Aeropuerto>(listaAeropuerto);
+			// listaAeropuertoLLegada = new
+			// ArrayList<Aeropuerto>(listaAeropuerto);
 			listaCabina = clasificacionCabinaDao.obtenerClasificacionCabina();
+			this.obtenerNumPasajeros();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public List<Aeropuerto> completeAeropuerto(String query){
-		System.out.println("query: ");
-		System.out.println(query); 
-		
-        List<Aeropuerto> resultsAeropuerto = new ArrayList<Aeropuerto>();
-        resultsAeropuerto = listaAeropuertoIda;
-        return resultsAeropuerto;
+
+	private void obtenerNumPasajeros() {
+		for (int i = 1; i <= 10; i++) {
+			numPasajeros.add(i);
+		}
+
 	}
-	
+
+	public List<Aeropuerto> completeAeropuertoOrigen(String query) {
+		System.out.println("entro en complete query: ");
+		System.out.println(query);
+		List<Aeropuerto> resultsAeropuerto = new ArrayList<Aeropuerto>();
+		resultsAeropuerto = aeropuertoservice.getAeropuertos();
+		return resultsAeropuerto;
+	}
+
+	public List<Aeropuerto> completeAeropuertoDestino(String query) {
+		System.out.println("entro en complete query: ");
+		System.out.println(query);
+		List<Aeropuerto> resultsAeropuerto = new ArrayList<Aeropuerto>();
+		resultsAeropuerto = aeropuertoservice.getAeropuertos();
+		return resultsAeropuerto;
+	}
+
 	public void buscarLista() {
 		System.out.println("entro en metodo");
-		System.out.println(aeropuertoIdaSelect);
+		System.out.println(aeropuertoIdaSelect.getNombreAeropuerto());
+		System.out.println(cabinaSelect.getTipoClase());
+		System.out.println(idCabinaSelect);
 	}
 
 	public Boolean getSoloIda() {
@@ -140,5 +173,64 @@ public class Paso1FechaController {
 		this.aeropuertoLlegadaSelect = aeropuertoLlegadaSelect;
 	}
 
+	public Integer getIdAeropuertoSelect() {
+		return idAeropuertoSelect;
+	}
+
+	public void setIdAeropuertoSelect(Integer idAeropuertoSelect) {
+		this.idAeropuertoSelect = idAeropuertoSelect;
+	}
+
+	public void setAeropuertoservice(AeropuertoService aeropuertoservice) {
+		this.aeropuertoservice = aeropuertoservice;
+	}
+
+	public Date getFechaIdaSelect() {
+		return fechaIdaSelect;
+	}
+
+	public void setFechaIdaSelect(Date fechaIdaSelect) {
+		this.fechaIdaSelect = fechaIdaSelect;
+	}
+
+	public Date getFechaVueltaSelect() {
+		return fechaVueltaSelect;
+	}
+
+	public void setFechaVueltaSelect(Date fechaVueltaSelect) {
+		this.fechaVueltaSelect = fechaVueltaSelect;
+	}
+
+	public Clasificacioncabina getCabinaSelect() {
+		return cabinaSelect;
+	}
+
+	public void setCabinaSelect(Clasificacioncabina cabinaSelect) {
+		this.cabinaSelect = cabinaSelect;
+	}
+
+	public Integer getIdCabinaSelect() {
+		return idCabinaSelect;
+	}
+
+	public void setIdCabinaSelect(Integer idCabinaSelect) {
+		this.idCabinaSelect = idCabinaSelect;
+	}
+
+	public List<Integer> getNumPasajeros() {
+		return numPasajeros;
+	}
+
+	public void setNumPasajeros(List<Integer> numPasajeros) {
+		this.numPasajeros = numPasajeros;
+	}
+
+	public Integer getNumPasajeroSelect() {
+		return numPasajeroSelect;
+	}
+
+	public void setNumPasajeroSelect(Integer numPasajeroSelect) {
+		this.numPasajeroSelect = numPasajeroSelect;
+	}
 
 }

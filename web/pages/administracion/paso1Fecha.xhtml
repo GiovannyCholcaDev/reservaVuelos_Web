@@ -7,13 +7,8 @@
 
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
+		<!--  <h:outputStylesheet name="css/style.css" /> -->
 		<button onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente</button>
-		<!-- 		<p:panelGrid columns="1" style="width:100%"> -->
-		<!-- 			<f:facet name="header"> -->
-		<!-- 				<h:outputLabel value="Compra de pasajes" /> -->
-		<!-- 			</f:facet> -->
-		<!-- 		</p:panelGrid> -->
-
 		<p:panel header="Compra de pasajes" style="text-align:center;">
 			<h:panelGrid columns="3" cellspacing="5"
 				style=" width:50%; text-align:left;">
@@ -21,37 +16,61 @@
 			</h:panelGrid>
 
 			<h:panelGrid columns="3" cellspacing="5"
-				style=" width:50%; text-align:left;">
+				style=" width:100%; text-align:left;">
 
 				<h:panelGrid columns="1">
-					<p:selectOneRadio id="idCabina" value="#{paso1Ctr.idayVuela}" layout="grid" columns="1">
+					<p:selectOneRadio id="idCabina" value="#{paso1Ctr.idayVuela}"
+						layout="grid" columns="1">
 						<f:selectItem itemLabel="Ida y vuelta" itemValue="vuela" />
 						<f:selectItem itemLabel="Sólo ida" itemValue="ida" />
 					</p:selectOneRadio>
 				</h:panelGrid>
 
-				<h:panelGrid columns="1" cellpadding="5">
-					<p:outputLabel value="Origen:" for="origen" />
-					<p:autoComplete id="origen" dropdown="true" value="#{paso1Ctr.aeropuertoIdaSelect}" completeMethod="#{paso1Ctr.completeAeropuerto}" 
-									var="aer" itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer.nombreAeropuerto}"/>
+				<h:panelGrid columns="2" cellpadding="5">
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Origen:" for="origen" />
+						<p:outputLabel for="idFechaIda" value="Ida" />
+						<p:autoComplete id="origen" dropdown="true"
+							value="#{paso1Ctr.aeropuertoIdaSelect}" var="aer"
+							itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer}"
+							completeMethod="#{paso1Ctr.completeAeropuertoOrigen}"
+							converter="aeropuertoConverter" />
+						<p:calendar id="idFechaIda" value="#{paso1Ctr.fechaIdaSelect}"
+							inputStyle="width:90px;" showOn="button" />
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Destino:" for="destino" />
+						<p:outputLabel for="idFechaVuelta" value="Vuelta" />
+						<p:autoComplete id="destino" dropdown="true"
+							value="#{paso1Ctr.aeropuertoLlegadaSelect}" var="aer"
+							itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer}"
+							completeMethod="#{paso1Ctr.completeAeropuertoDestino}"
+							converter="aeropuertoConverter" />
+						<p:calendar id="idFechaVuelta"
+							value="#{paso1Ctr.fechaVueltaSelect}" inputStyle="width:90px;"
+							showOn="button" />
+					</h:panelGrid>
+				</h:panelGrid>
+			</h:panelGrid>
+			<h:panelGrid columns="3" cellspacing="5">
+				<h:panelGrid columns="1">
+					<p:outputLabel for="console" value="Cabina:" />
+					<p:selectOneMenu id="console" value="#{paso1Ctr.idCabinaSelect}"
+						effect="fold" style="width:125px">
+						<f:selectItem itemLabel="Select" itemValue="" />
+						<f:selectItems value="#{paso1Ctr.listaCabina}" var="var"
+							itemLabel="#{var.tipoClase}"
+							itemValue="#{var.idClasificacionCabina}" />
+					</p:selectOneMenu>
+				</h:panelGrid>
+				<h:panelGrid columns="1">
+					<p:outputLabel for="pasajeros" value="N. Pasajeros:" />
+					<p:selectOneMenu id="pasajeros" value="#{paso1Ctr.numPasajeroSelect}" effect="fold" style="width:125px">
+						<f:selectItem itemLabel="Select" itemValue="" />
+						<f:selectItems value="#{paso1Ctr.numPasajeros}"  />
+					</p:selectOneMenu>
 				</h:panelGrid>
 
-
-				<h:panelGrid columns="1"  cellpadding="5">
-					<p:outputLabel value="Destino:" for="destino" />
-					<p:autoComplete id="destino" dropdown="true" value="#{paso1Ctr.aeropuertoLlegadaSelect}" completeMethod="#{paso1Ctr.listaAeropuertoLLegada}" />
-				</h:panelGrid>
-				<!-- 
-				<h:panelGrid columns="1" style="margin-bottom:10px" cellpadding="5">
-				</h:panelGrid>
-				<p:outputLabel for="console" value="Basic:" />
-				<p:selectOneMenu id="console" value="#{selectOneMenuView.console}"
-					style="width:125px">
-					<f:selectItem itemLabel="Select One" itemValue="" />
-					<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-					<f:selectItem itemLabel="PS4" itemValue="PS4" />
-					<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-				</p:selectOneMenu> -->
 			</h:panelGrid>
 		</p:panel>
 

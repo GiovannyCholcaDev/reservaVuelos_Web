@@ -6,8 +6,10 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<link href="../../resources/css/style.css" type="text/css"
-		rel="stylesheet" />
+	<!-- <link href="../../resources/css/style.css" type="text/css" rel="stylesheet" /> -->
+	<title><ui:insert name="title">Reserva Vuelos</ui:insert></title>
+	 <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>    
+	<ui:insert name="css" /> 
 </h:head>
 <body>
 	<h:form id="idMenuCab">
@@ -34,25 +36,6 @@
 					<h:outputLabel value="estoy en contenido" />
 				</ui:insert>
 			</p:layoutUnit>
-
-			<!-- seccion menu  -->
-			<!-- <p:layoutUnit position="west" size="200" header="Menú"
-				collapsible="true">
-				 <h:form id="frmMenu">
-					<p:panelMenu>
-						<p:submenu label="Administracion">
-							<p:menuitem value="Catálogos" />
-						</p:submenu>
-
-						<p:submenu label="Seguridad">
-							<p:menuitem value="Rol" />
-						</p:submenu>
-						<p:submenu label="Inventario">
-							<p:menuitem value="Producto" />
-						</p:submenu>
-					</p:panelMenu>
-				</h:form> 
-			</p:layoutUnit> -->
 
 			<!-- seccion ayuda -->
 			<p:layoutUnit position="east" size="200" collapsed="true"

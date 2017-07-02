@@ -1,3 +1,7 @@
+.dateTimeField input {
+   width:40px;
+}
+
 .ui-steps .ui-steps-item {
     width: 15%;
 }
