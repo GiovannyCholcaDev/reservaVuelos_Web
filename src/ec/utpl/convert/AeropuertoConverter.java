@@ -18,7 +18,12 @@ public class AeropuertoConverter implements Converter {
 		if (value != null && value.trim().length() > 0) {
 			try {
 				AeropuertoService service = (AeropuertoService) fc.getExternalContext().getApplicationMap().get("aeropuertoService");
-				return service.getAeropuertos().get(Integer.parseInt(value));
+				Integer index =  Integer.parseInt(value) - 1;
+				if(index >= 0){
+					return service.getAeropuertos().get(index);
+				}else{
+					return new Aeropuerto();
+				}
 			} catch (NumberFormatException e) {
 				throw new ConverterException(
 						new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid aeropuerto."));

@@ -52,7 +52,7 @@ public class LoginController {
 				if (login != null) {
 					loggedIn = true;
 					message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", nombreUsuario);
-					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/paso1Fecha.jsf");
+					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoUnoFecha.jsf");
 				} else {
 					loggedIn = false;
 					message = new FacesMessage(FacesMessage.SEVERITY_WARN, "Loggin Error", "Datos incorrectos");

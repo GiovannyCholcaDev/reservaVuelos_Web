@@ -40,22 +40,22 @@ public class MenuController {
 			ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 			switch (stepIndex) {
 			case 0:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/paso1Fecha.jsf");
+				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoUnoFecha.jsf");
 				break;
 			case 1:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/paso2Vuelos.jsf");
+				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoDosVuelos.jsf");
 				break;
 			case 2:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/paso3Precio.jsf");
+				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoTresPrecio.jsf");
 				break;
 			case 3:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/paso4Pasajeros.jsf");
+				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoCuatroPasajeros.jsf");
 				break;
 			case 4:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/paso5Pago.jsf");
+				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoCincoPago.jsf");
 				break;
 			case 5:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/paso6Confirmacion.jsf");
+				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoSeisConfirmacion.jsf");
 				break;
 			default:
 				break;

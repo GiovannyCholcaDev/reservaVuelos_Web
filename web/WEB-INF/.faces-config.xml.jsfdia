@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#pages#template#menu.xhtml"
+  PATH="/pages/template/menu.xhtml" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#template#menu.xhtml:0" NAME="item"
+   PATH="/pages/template/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="paso1::#pages#administracion#pasoUnoFecha.xhtml" NAME="output"
+    PATH="/pages/administracion/pasoUnoFecha.xhtml"
+    TARGET="rules:#pages#administracion#pasoUnoFecha.xhtml"
+    TITLE="paso1" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#pages#template#menu.xhtml:1" NAME="item1"
+   PATH="/pages/template/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="paso2::#pages#administracion#pasoDosVuelos.xhtml" NAME="output"
+    PATH="/pages/administracion/pasoDosVuelos.xhtml"
+    TARGET="rules:#pages#administracion#pasoDosVuelos.xhtml"
+    TITLE="paso2" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#pages#template#menu.xhtml:2" NAME="item2"
+   PATH="/pages/template/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="paso3::#pages#administracion#pasoTresPrecio.xhtml" NAME="output"
+    PATH="/pages/administracion/pasoTresPrecio.xhtml"
+    TARGET="rules:#pages#administracion#pasoTresPrecio.xhtml"
+    TITLE="paso3" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#pages#template#menu.xhtml:3" NAME="item3"
+   PATH="/pages/template/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="paso4::#pages#administracion#pasoCuatroPasajeros.xhtml"
+    NAME="output" PATH="/pages/administracion/pasoCuatroPasajeros.xhtml"
+    TARGET="rules:#pages#administracion#pasoCuatroPasajeros.xhtml"
+    TITLE="paso4" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#pages#template#menu.xhtml:4" NAME="item4"
+   PATH="/pages/template/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="paso5::#pages#administracion#pasoCincoPago.xhtml" NAME="output"
+    PATH="/pages/administracion/pasoCincoPago.xhtml"
+    TARGET="rules:#pages#administracion#pasoCincoPago.xhtml"
+    TITLE="paso5" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#pages#template#menu.xhtml:5" NAME="item5"
+   PATH="/pages/template/menu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="paso6::#pages#administracion#pasoSeisConfirmacion.xhtml"
+    NAME="output"
+    PATH="/pages/administracion/pasoSeisConfirmacion.xhtml"
+    TARGET="rules:#pages#administracion#pasoSeisConfirmacion.xhtml"
+    TITLE="paso6" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#index.html" PATH="/index.html" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#index.html:0" NAME="item" PATH="/index.html" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="goLogin::#pages#seguridad#login.xhtml"
+    NAME="output" PATH="/pages/seguridad/login.xhtml"
+    TARGET="rules:#pages#seguridad#login.xhtml" TITLE="goLogin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administracion#pasoSeisConfirmacion.xhtml"
+  PATH="/pages/administracion/pasoSeisConfirmacion.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#administracion#pasoCincoPago.xhtml"
+  PATH="/pages/administracion/pasoCincoPago.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#administracion#pasoUnoFecha.xhtml"
+  PATH="/pages/administracion/pasoUnoFecha.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#seguridad#login.xhtml"
+  PATH="/pages/seguridad/login.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#administracion#pasoTresPrecio.xhtml"
+  PATH="/pages/administracion/pasoTresPrecio.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#administracion#pasoDosVuelos.xhtml"
+  PATH="/pages/administracion/pasoDosVuelos.xhtml" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#pages#administracion#pasoCuatroPasajeros.xhtml"
+  PATH="/pages/administracion/pasoCuatroPasajeros.xhtml" model-entity="JSFProcessGroup"/>
+</PROCESS>

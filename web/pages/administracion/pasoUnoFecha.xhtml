@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../template/templateGeneral.xhtml">
+	<ui:define name="contenido">
+			<h:outputStylesheet name="css/style.css" />
+			<button class="button" onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente &raquo;</button>
+				<h:form id="formPageFecha">
+					<p:panel id="idPanelPageUno" header="Compra de pasajes" style="text-align:center;">
+						<h:panelGrid columns="3" cellspacing="5" style=" width:50%; text-align:left;">
+							<p:commandButton value="Aceptar" action="#{pasoUnoCtr.buscarLista()}" update="idPanelPageUno" />
+						</h:panelGrid>
+							
+						<h:panelGrid columns="2" cellspacing="5" style=" width:100%; text-align:left;">
+									<h:panelGrid columns="1">
+										<p:selectOneRadio id="idCabina" value="#{pasoUnoCtr.idayVuelaSelect}" layout="grid" columns="1">
+											<p:ajax process="@this" update="idPanelPageUno"/>
+											<f:selectItem itemLabel="Ida y vuelta" itemValue="idayvuelta" />
+											<f:selectItem itemLabel="Sólo ida" itemValue="soloida" />
+										</p:selectOneRadio>
+									</h:panelGrid>
+			
+									<h:panelGrid columns="4" cellpadding="5">
+										<h:panelGrid columns="1">
+											<p:outputLabel value="Origen:" for="origen" />
+											<p:autoComplete id="origen" dropdown="true" size="20"
+												value="#{pasoUnoCtr.aeropuertoIdaSelect}" var="aer" itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer}"
+												completeMethod="#{pasoUnoCtr.completeAeropuertoOrigen}" converter="aeropuertoConverter" />
+										</h:panelGrid>
+										<h:panelGrid columns="1">
+											<p:outputLabel for="idFechaIda" value="Ida" />
+											<p:calendar id="idFechaIda" value="#{pasoUnoCtr.fechaIdaSelect}" inputStyle="width:90px;" showOn="button">
+											            <p:ajax event="dateSelect" update="idFechaVuelta" />
+											</p:calendar>
+										</h:panelGrid>
+										<h:panelGrid columns="1">
+											<p:outputLabel value="Destino:" for="destino" />
+											<p:autoComplete id="destino" dropdown="true"
+												value="#{pasoUnoCtr.aeropuertoLlegadaSelect}" var="aer" itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer}"
+												completeMethod="#{pasoUnoCtr.completeAeropuertoDestino}" converter="aeropuertoConverter" />
+										</h:panelGrid>
+										<h:panelGrid  id="idIdaYVuelta" columns="1" rendered="#{pasoUnoCtr.idayVuelaSelect == 'idayvuelta'}">
+											<p:outputLabel for="idFechaVuelta" value="Vuelta" />
+											<p:calendar id="idFechaVuelta" value="#{pasoUnoCtr.fechaVueltaSelect}" inputStyle="width:90px;" showOn="button"
+														mindate="#{pasoUnoCtr.fechaIdaSelect}"/>
+										</h:panelGrid>
+									</h:panelGrid>
+						</h:panelGrid>
+						
+						<h:panelGrid columns="2" cellspacing="5"  style="padding-left:240px;text-align:left;" >
+							<h:panelGrid columns="1">
+								<p:outputLabel for="cabina" value="Cabina:" />
+								<p:selectOneMenu id="cabina" value="#{pasoUnoCtr.idCabinaSelect}" effect="fold" style="width:125px">
+									<f:selectItem itemLabel="Select" itemValue="" />
+									<f:selectItems value="#{pasoUnoCtr.listaCabina}" var="var" itemLabel="#{var.tipoClase}" itemValue="#{var.idClasificacionCabina}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
+							<h:panelGrid columns="1">
+								<p:outputLabel for="pasajeros" value="N. Pasajeros:" />
+								<p:selectOneMenu id="pasajeros" value="#{pasoUnoCtr.numPasajeroSelect}" effect="fold" style="width:125px">
+									<f:selectItem itemLabel="Select" itemValue="" />
+									<f:selectItems value="#{pasoUnoCtr.numPasajeros}"  />
+								</p:selectOneMenu>
+							</h:panelGrid>
+						</h:panelGrid>
+						
+					</p:panel>
+			</h:form>
+		
+	</ui:define>
+ 
+</ui:composition>
+
+</html>
