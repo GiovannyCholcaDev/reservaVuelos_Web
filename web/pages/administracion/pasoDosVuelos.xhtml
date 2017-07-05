@@ -7,16 +7,49 @@
 
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
-		<p:panelGrid columns="1" style="width:100%">
-			<button
-				onclick="setStepIndex([{name:'index', value:0}]);return false">Atras</button>
-			<button
-				onclick="setStepIndex([{name:'index', value:2}]);return false">Siguiente</button>
+		<h:outputStylesheet name="css/style.css" />
+		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
+		<h:form id="formPageVuelos">
+			<p:panelGrid columns="1" style="width:100%">
+				<f:facet name="header">
+					<h:outputLabel value="Selecciona tu vuelo" />
+				</f:facet>
+			</p:panelGrid>
 
-			<f:facet name="header">
-				<h:outputLabel value="Selecciona tu vuelo" />
-			</f:facet>
-		</p:panelGrid>
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 fondoDiv">
+					<div class="col-md-3">Ida</div>
+					<div class="col-md-3">Vuelta</div>
+					<div class="col-md-3">Pasajeros:</div>
+					<div class="col-md-3">Cabina</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-6 fondoDiv">
+					<div class="col-md-3">Ida</div>
+					<div class="col-md-3">Vuelta</div>
+					<div class="col-md-3">Pasajeros:</div>
+					<div class="col-md-3">Cabina</div>
+				</div>
+				<div class="col-md-3"></div>
+			</div>
+
+			<h:panelGrid columns="3" cellspacing="5"
+				style=" width:50%; text-align:left;">
+				<p:commandButton value="Aceptar"
+					action="#{pasoDosCtrl.clicBoton()}" update="formPageVuelos" />
+			</h:panelGrid>
+
+			<div id="idButton" align="center">
+				<button class="button" onclick="setStepIndex([{name:'index', value:0}]);return false">Atras</button>
+				<button class="button" onclick="setStepIndex([{name:'index', value:2}]);return false">Siguiente</button>
+			</div>
+
+		</h:form>
 	</ui:define>
 
 </ui:composition>

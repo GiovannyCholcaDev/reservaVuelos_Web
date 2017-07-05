@@ -8,12 +8,12 @@
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
 			<h:outputStylesheet name="css/style.css" />
-			<button class="button" onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente &raquo;</button>
 				<h:form id="formPageFecha">
 					<p:panel id="idPanelPageUno" header="Compra de pasajes" style="text-align:center;">
+					<!--  
 						<h:panelGrid columns="3" cellspacing="5" style=" width:50%; text-align:left;">
 							<p:commandButton value="Aceptar" action="#{pasoUnoCtr.buscarLista()}" update="idPanelPageUno" />
-						</h:panelGrid>
+						</h:panelGrid> -->
 							
 						<h:panelGrid columns="2" cellspacing="5" style=" width:100%; text-align:left;">
 									<h:panelGrid columns="1">
@@ -51,7 +51,7 @@
 									</h:panelGrid>
 						</h:panelGrid>
 						
-						<h:panelGrid columns="2" cellspacing="5"  style="padding-left:240px;text-align:left;" >
+						<h:panelGrid columns="2" cellspacing="5"  style="padding-left:280px;text-align:left;" >
 							<h:panelGrid columns="1">
 								<p:outputLabel for="cabina" value="Cabina:" />
 								<p:selectOneMenu id="cabina" value="#{pasoUnoCtr.idCabinaSelect}" effect="fold" style="width:125px">
@@ -67,8 +67,12 @@
 								</p:selectOneMenu>
 							</h:panelGrid>
 						</h:panelGrid>
-						
-					</p:panel>
+
+				<div id="idButton" align="center">
+					<button class="button" onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente &raquo;</button>
+				</div>
+
+			</p:panel>
 			</h:form>
 		
 	</ui:define>
