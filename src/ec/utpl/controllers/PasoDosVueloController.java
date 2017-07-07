@@ -10,20 +10,30 @@ import ec.utpl.util.JsfUtil;
 @SessionScoped()
 public class PasoDosVueloController {
 	
+	PasoUnoFechaController pasoUnoCtrl;
 	
 	public PasoDosVueloController(){
-		
+		pasoUnoCtrl = new PasoUnoFechaController();
 	}
 	
 	@PostConstruct()
 	private void start(){
-	 PasoUnoFechaController pasoUno = (PasoUnoFechaController) JsfUtil.obtenerObjetoSesion("pasoUnoCtr");
-	 pasoUno.getClass();
+	  pasoUnoCtrl = (PasoUnoFechaController) JsfUtil.obtenerObjetoSesion("pasoUnoCtr");
+	  pasoUnoCtrl.getFechaIdaSelect();
 	}
 	
 	
 	public void clicBoton(){
-		System.out.println("clic");
+		System.out.println(pasoUnoCtrl.getAeropuertoIdaSelect().getNombreAeropuerto());
+		System.out.println(pasoUnoCtrl.getAeropuertoLlegadaSelect().getNombreAeropuerto());
+	}
+
+	public PasoUnoFechaController getPasoUnoCtrl() {
+		return pasoUnoCtrl;
+	}
+
+	public void setPasoUnoCtrl(PasoUnoFechaController pasoUnoCtrl) {
+		this.pasoUnoCtrl = pasoUnoCtrl;
 	}
 
 }
