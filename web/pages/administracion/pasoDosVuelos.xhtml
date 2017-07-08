@@ -3,12 +3,12 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
 		<h:outputStylesheet name="css/style.css" />
-		<h:outputStylesheet name="bootstrap/css/bootstrap.css" />
 		<h:form id="formPageVuelos">
 			<p:panelGrid columns="1" style="width:100%">
 				<f:facet name="header">
@@ -16,28 +16,37 @@
 				</f:facet>
 			</p:panelGrid>
 
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6 fondoDiv">
-					<div class="col-md-3">Ida</div>
-					<div class="col-md-3">Vuelta</div>
-					<div class="col-md-3">Pasajeros:</div>
-					<div class="col-md-3">Cabina</div>
-				</div>
-				<div class="col-md-3"></div>
-			</div>
+			<b:row styleClass="fondoDiv" >
+				<b:column col-md="2" offset="3" style="text-align:center;">
+					<h:outputLabel value="Ida" />
+				</b:column>
+				<b:column col-md="2" style="text-align:center;">
+					<h:outputLabel value="Vuelta" />
+				</b:column>
+				<b:column col-md="1" style="text-align:center;">
+					<h:outputLabel value="Pasajeros" />
+				</b:column>
+				<b:column col-md="1">
+					<h:outputLabel value="Cabina" />
+				</b:column>
+			</b:row>
 			
-			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6 fondoDiv">
-					<div class="col-md-3">#{pasoUnoCtr.aeropuertoIdaSelect.nombreAeropuerto}</div>
-					<div class="col-md-3">#{pasoUnoCtr.aeropuertoLlegadaSelect.nombreAeropuerto}</div>
-					<div class="col-md-3">#{pasoUnoCtr.numPasajeroSelect}</div>
-					<div class="col-md-3">Cabina</div>
-				</div>
-				<div class="col-md-3"></div>
-			</div>
-
+			
+			<b:row styleClass="fondoDiv" >
+				<b:column col-md="2" offset="3">
+					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.aeropuertoIdaSelect.nombreAeropuerto}" />
+				</b:column>
+				<b:column col-md="2" style="text-align:center;">
+					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.aeropuertoLlegadaSelect.nombreAeropuerto}"/>
+				</b:column>
+				<b:column col-md="1" style="text-align:center;">
+					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.numPasajeroSelect}" />
+				</b:column>
+				<b:column col-md="1">
+					<h:outputLabel styleClass="fontNormal" value="Cabina" />
+				</b:column>
+			</b:row>
+			
 			<h:panelGrid columns="3" cellspacing="5"
 				style=" width:50%; text-align:left;">
 				<p:commandButton value="Aceptar"

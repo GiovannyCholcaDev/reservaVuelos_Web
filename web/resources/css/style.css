@@ -2,6 +2,10 @@
 	background-color: lightblue;
 }
 
+.fontNormal{
+  font-weight: normal;
+}
+
 .button {
     background-color: #4CAF50;
     border: none;

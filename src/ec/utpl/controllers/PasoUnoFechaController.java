@@ -50,6 +50,7 @@ public class PasoUnoFechaController {
 	private AeropuertoService aeropuertoservice;
 
 	public PasoUnoFechaController() {
+		System.out.println("PasoUnoFechaController...");
 		listaAeropuertoIda = new ArrayList<Aeropuerto>();
 		listaAeropuertoLLegada = new ArrayList<Aeropuerto>();
 		listaCabina = new ArrayList<Clasificacioncabina>();
@@ -62,12 +63,13 @@ public class PasoUnoFechaController {
 	@PostConstruct
 	private void start() {
 		try {
-			System.out.println("entro en start");
+			System.out.println("entro en start: PasoUnoFechaController");
 			 List<Aeropuerto> listaAeropuerto = new ArrayList<Aeropuerto>();
 			 listaAeropuerto = aeropuertoDao.obtenerListaAeropuertos();
 			 listaAeropuertoIda = new ArrayList<Aeropuerto>(listaAeropuerto);
 			 listaAeropuertoLLegada = new ArrayList<Aeropuerto>(listaAeropuerto);
-			listaCabina = clasificacionCabinaDao.obtenerClasificacionCabina();
+			 listaCabina = clasificacionCabinaDao.obtenerClasificacionCabina();
+			this.idayVuelaSelect = "true";
 			this.obtenerNumPasajeros();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,6 +106,8 @@ public class PasoUnoFechaController {
 		System.out.println(aeropuertoLlegadaSelect.getNombreAeropuerto());
 		System.out.println("id-cabina");
 		System.out.println(idCabinaSelect);
+		System.out.println("idayVuelaSelect");
+		System.out.println(idayVuelaSelect);
 	}
 
 	public Boolean getSoloIda() {
