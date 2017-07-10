@@ -4,17 +4,18 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:x_rt="http://java.sun.com/jstl/xml_rt"
-	xmlns:c_rt="http://java.sun.com/jstl/core_rt">
-
+	xmlns:b="http://bootsfaces.net/ui">
 <h:head>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head" />
 	<h:outputScript library="primefaces" name="jquery/jquery-plugins.js" target="head" />
 </h:head>
 <h:body>
 	<h:form>
+		<h:inputHidden value="#{pasoUnoCtr.lectura}" />
 		<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
-		
 		<p:fieldset legend="Acceso al sistema" style="margin-bottom:20px">
 			<h:panelGrid columns="2" cellpadding="5">
 			</h:panelGrid>

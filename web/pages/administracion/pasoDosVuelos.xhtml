@@ -43,7 +43,7 @@
 					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.numPasajeroSelect}" />
 				</b:column>
 				<b:column col-md="1">
-					<h:outputLabel styleClass="fontNormal" value="Cabina" />
+					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.cabinaSelect.tipoClase}" />
 				</b:column>
 			</b:row>
 			
@@ -52,6 +52,57 @@
 				<p:commandButton value="Aceptar"
 					action="#{pasoDosCtrl.clicBoton()}" update="formPageVuelos" />
 			</h:panelGrid>
+
+			<p:dataTable id="singleDT" var="car"
+				value="#{pasoDosCtrl.itinerariosCol}" selectionMode="single"
+				selection="#{pasoDosCtrl.itinerarioSelect}" rowKey="#{car.idVuelo}">
+				<f:facet name="header">
+			            Single with Row Click
+			        </f:facet>
+				<p:column style="width:35px">
+					<p:rowToggler/>
+				</p:column>
+				<p:column headerText="Ciudad">
+					<h:outputText value="#{car.ciudadOrigen}" />
+				</p:column>
+				<p:column headerText="Abreviatura">
+					<h:outputText value="#{car.abreviaturaOrigen}" />
+				</p:column>
+				<p:column headerText="Fecha">
+					<h:outputText value="#{car.fechaOrigen}" />
+				</p:column>
+				<p:column headerText="Hora">
+					<h:outputText value="#{car.horaOrigen}" />
+				</p:column>
+				<p:column headerText="Tipo">
+					<h:outputText value="#{car.tipoClase}" />
+				</p:column>
+				<p:column headerText="Aerolinea">
+					<h:outputText value="#{car.aerolinea}" />
+				</p:column>
+
+				<p:rowExpansion>
+					<h:panelGrid columns="2" style="width:300px">
+		
+						<h:outputText value="Id:" />
+						<h:outputText value="#{car.abreviaturaDestino }" />
+
+						<h:outputText value="Year" />
+						<h:outputText value="#{car.duracion}" />
+
+						<h:outputText value="Color:" />
+						<h:outputText value="#{car.estadoAvion}" style="color:#{car.estadoAvion}" />
+
+						<h:outputText value="Price" />
+						<h:outputText value="$#{car.impuestoTasa}" />
+					</h:panelGrid>
+				</p:rowExpansion>
+
+				<f:facet name="footer">
+					<!-- 	<p:commandButton process="singleDT" update="formPageVuelos" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" /> -->
+				</f:facet>
+			</p:dataTable>
+
 
 			<div id="idButton" align="center">
 				<button class="button" onclick="setStepIndex([{name:'index', value:0}]);return false">Atras</button>

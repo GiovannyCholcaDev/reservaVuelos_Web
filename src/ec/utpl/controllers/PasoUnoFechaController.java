@@ -21,7 +21,7 @@ import modelo.Clasificacioncabina;
 @ManagedBean(name = "pasoUnoCtr")
 @SessionScoped
 public class PasoUnoFechaController {
-
+	private String lectura;
 	private Boolean soloIda;
 	private String idayVuelaSelect;
 	private List<Aeropuerto> listaAeropuertoIda;
@@ -53,11 +53,15 @@ public class PasoUnoFechaController {
 		System.out.println("PasoUnoFechaController...");
 		listaAeropuertoIda = new ArrayList<Aeropuerto>();
 		listaAeropuertoLLegada = new ArrayList<Aeropuerto>();
-		listaCabina = new ArrayList<Clasificacioncabina>();
 		aeropuertoIdaSelect = new Aeropuerto();
 		aeropuertoLlegadaSelect = new Aeropuerto();
-		cabinaSelect = new Clasificacioncabina();
 		numPasajeros = new ArrayList<Integer>();
+		idCabinaSelect = 0;
+		numPasajeroSelect =0;
+		
+		listaCabina = new ArrayList<Clasificacioncabina>();
+		cabinaSelect = new Clasificacioncabina();
+		
 	}
 
 	@PostConstruct
@@ -108,8 +112,9 @@ public class PasoUnoFechaController {
 		System.out.println(idCabinaSelect);
 		System.out.println("idayVuelaSelect");
 		System.out.println(idayVuelaSelect);
+		System.out.println(cabinaSelect.getTipoClase());
 	}
-
+	
 	public Boolean getSoloIda() {
 		return soloIda;
 	}
@@ -236,6 +241,14 @@ public class PasoUnoFechaController {
 
 	public void setIdayVuelaSelect(String idayVuelaSelect) {
 		this.idayVuelaSelect = idayVuelaSelect;
+	}
+
+	public String getLectura() {
+		return lectura;
+	}
+
+	public void setLectura(String lectura) {
+		this.lectura = lectura;
 	}
 
 }
