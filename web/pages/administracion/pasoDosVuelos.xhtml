@@ -12,7 +12,7 @@
 		<h:form id="formPageVuelos">
 			<p:panelGrid columns="1" style="width:100%">
 				<f:facet name="header">
-					<h:outputLabel value="Selecciona tu vuelo" />
+					<h:outputLabel value="Ruta Seleccionada" />
 				</f:facet>
 			</p:panelGrid>
 
@@ -30,7 +30,6 @@
 					<h:outputLabel value="Cabina" />
 				</b:column>
 			</b:row>
-			
 			
 			<b:row styleClass="fondoDiv" >
 				<b:column col-md="2" offset="3">
@@ -56,53 +55,123 @@
 			<p:dataTable id="singleDT" var="car"
 				value="#{pasoDosCtrl.itinerariosCol}" selectionMode="single"
 				selection="#{pasoDosCtrl.itinerarioSelect}" rowKey="#{car.idVuelo}">
-				<f:facet name="header">
-			            Single with Row Click
-			        </f:facet>
-				<p:column style="width:35px">
-					<p:rowToggler/>
-				</p:column>
-				<p:column headerText="Ciudad">
-					<h:outputText value="#{car.ciudadOrigen}" />
-				</p:column>
-				<p:column headerText="Abreviatura">
-					<h:outputText value="#{car.abreviaturaOrigen}" />
-				</p:column>
-				<p:column headerText="Fecha">
-					<h:outputText value="#{car.fechaOrigen}" />
-				</p:column>
-				<p:column headerText="Hora">
-					<h:outputText value="#{car.horaOrigen}" />
-				</p:column>
-				<p:column headerText="Tipo">
-					<h:outputText value="#{car.tipoClase}" />
-				</p:column>
-				<p:column headerText="Aerolinea">
-					<h:outputText value="#{car.aerolinea}" />
-				</p:column>
+				<f:facet name="header">Selecciona tu ida</f:facet>
+					<p:column style="width:35px">
+						<p:rowToggler/>
+					</p:column>
+					<p:column headerText="Fecha">
+						<h:outputText value="#{car.fechaOrigen}">
+							  <f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Hora">
+						<h:outputText value="#{car.horaOrigen}">
+							<f:convertDateTime pattern="HH:mm" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Salida">
+						<h:outputText value="#{car.abreviaturaOrigen}" />
+					</p:column>
+					<p:column headerText="Ciudad">
+						<h:outputText value="#{car.ciudadOrigen}" />
+					</p:column>
+					<p:column headerText="Aeropuerto">
+						<h:outputText value="#{car.nombreAeropuertoOrigen}" />
+					</p:column>		
+					
+					<p:column headerText="Fecha">
+						<h:outputText value="#{car.fechaDestino}">
+							  <f:convertDateTime pattern="dd/MM/yyyy" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Hora">
+						<h:outputText value="#{car.horaDestino}">
+							<f:convertDateTime pattern="HH:mm" />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Salida">
+						<h:outputText value="#{car.abreviaturaDestino}" />
+					</p:column>
+					<p:column headerText="Ciudad">
+						<h:outputText value="#{car.ciudadDestino}" />
+					</p:column>
+					<p:column headerText="Aeropuerto">
+						<h:outputText value="#{car.nombreAeropuertoDestino}" />
+					</p:column>	
+					<p:column headerText="Duración">
+						<h:outputText value="#{car.duracion}">
+							<f:convertDateTime pattern="HH:mm" />
+						</h:outputText>
+					</p:column>	
+					<p:column headerText="Escala">
+						<h:outputText value="#{car.abordaje}">
+							<f:convertDateTime pattern="HH:mm" />
+						</h:outputText>
+					</p:column>	
+					<p:column headerText="Tipo">
+						<h:outputText value="#{car.tipoClase}" />
+					</p:column>
+					<p:column headerText="Aerolinea">
+						<h:outputText value="#{car.aerolinea}" />
+					</p:column>
 
 				<p:rowExpansion>
-					<h:panelGrid columns="2" style="width:300px">
-		
-						<h:outputText value="Id:" />
-						<h:outputText value="#{car.abreviaturaDestino }" />
+					<b:row styleClass="fondoDiv" >
+						<b:column col-md="2">
+							<h:outputLabel value="#{car.nombreAeropuertoOrigen}" />
+						</b:column>
+						<b:column col-md="2">
+							<h:outputLabel value="#{car.nombreAeropuertoDestino}" />
+						</b:column>
+						<b:column col-md="1">
+							<h:outputText value="Duración total:"/>
+						</b:column>
+						<b:column col-md="1">
+							<h:outputText value="Vuelo:"/>
+						</b:column>
+						<b:column col-md="2">
+							<h:outputText value="Cabina:"/>
+						</b:column>
+						<b:column col-md="1">
+								<h:outputText value="Aerolínea:"/>
+						</b:column>
+					</b:row>
+					
+					<b:row styleClass="fondoDiv" >
+						<b:column col-md="1" offset="1">
+							<h:outputLabel value="#{car.ciudadOrigen}"/>
+							<h:outputLabel styleClass="fontNormal" value="&#160;-&#160;"/>
+							<h:outputLabel styleClass="fontNormal" 
+											value="#{car.abreviaturaOrigen}" />
+						</b:column>
+						<b:column col-md="2">
+							<h:outputLabel value="#{car.ciudadDestino}"/>
+							<h:outputLabel styleClass="fontNormal" value="&#160;-&#160;"/>
+							<h:outputLabel styleClass="fontNormal" 
+											value="#{car.abreviaturaDestino}" />
+						</b:column>
+						<b:column col-md="1">
+							<h:outputLabel value="#{car.duracion}">
+									<f:convertDateTime pattern="HH:mm" />
+							</h:outputLabel>
+						</b:column>
+						<b:column col-md="1">
+							<h:outputLabel value="#{car.numeroVuelo}"/>
+						</b:column>
+						<b:column col-md="2">
+							<h:outputLabel value="#{car.tipoClase}"/>
+						</b:column>
+						<b:column col-md="2">
+								<h:outputLabel value="#{car.aerolinea}"/>
+						</b:column>
+					</b:row>
 
-						<h:outputText value="Year" />
-						<h:outputText value="#{car.duracion}" />
-
-						<h:outputText value="Color:" />
-						<h:outputText value="#{car.estadoAvion}" style="color:#{car.estadoAvion}" />
-
-						<h:outputText value="Price" />
-						<h:outputText value="$#{car.impuestoTasa}" />
-					</h:panelGrid>
 				</p:rowExpansion>
 
 				<f:facet name="footer">
 					<!-- 	<p:commandButton process="singleDT" update="formPageVuelos" icon="ui-icon-search" value="View" oncomplete="PF('carDialog').show()" /> -->
 				</f:facet>
 			</p:dataTable>
-
 
 			<div id="idButton" align="center">
 				<button class="button" onclick="setStepIndex([{name:'index', value:0}]);return false">Atras</button>
