@@ -52,13 +52,13 @@
 					action="#{pasoDosCtrl.clicBoton()}" update="formPageVuelos" />
 			</h:panelGrid>
 
-			<p:dataTable id="singleDT" var="car"
+			<p:dataTable id="idTablaOrigen" var="car"
 				value="#{pasoDosCtrl.itinerariosCol}" selectionMode="single"
-				selection="#{pasoDosCtrl.itinerarioOrigenSelect}" rowKey="#{car.idVuelo}">
+				selection="#{pasoDosCtrl.itinerarioIdaSelect}" rowKey="#{car.idVuelo}">
 				<f:facet name="header">Selecciona tu ida</f:facet>
 
-				<p:ajax event="rowSelect"   listener="#{pasoDosCtrl.onRowSelect}"/>
-				<p:ajax event="rowUnselect"	listener="#{pasoDosCtrl.onRowUnselect}" />
+<!-- 				<p:ajax event="rowSelect"   listener="#{pasoDosCtrl.onRowSelectOrigen}"/> -->
+<!-- 				<p:ajax event="rowUnselect"	listener="#{pasoDosCtrl.onRowUnselectOrigen}" /> -->
 
 				<p:columnGroup type="header">
 					<p:row>
@@ -264,15 +264,15 @@
 				</f:facet>
 			</p:dataTable>
 			
-			
+			<br/><br/>
 			
 			<p:dataTable id="idTablaDestino" var="car"
 				value="#{pasoDosCtrl.itinerariosCol}" selectionMode="single"
-				selection="#{pasoDosCtrl.itinerarioOrigenSelect}" rowKey="#{car.idVuelo}">
+				selection="#{pasoDosCtrl.itinerarioVueltaSelect}" rowKey="#{car.idVuelo}">
 				<f:facet name="header">Selecciona tu destino</f:facet>
 
-				<p:ajax event="rowSelect"   listener="#{pasoDosCtrl.onRowSelect}"/>
-				<p:ajax event="rowUnselect"	listener="#{pasoDosCtrl.onRowUnselect}" />
+				<!--<p:ajax event="rowSelect"   listener="#{pasoDosCtrl.onRowSelectDestino}"/>
+				<p:ajax event="rowUnselect"	listener="#{pasoDosCtrl.onRowUnselectDestino}" />  -->
 
 				<p:columnGroup type="header">
 					<p:row>

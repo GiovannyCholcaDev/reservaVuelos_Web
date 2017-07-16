@@ -23,20 +23,22 @@ public class PasoDosVueloController {
 	private PasoUnoFechaController pasoUnoCtrl;
 	private List<ItinerarioTransient> itinerariosCol;
 	private List<ItinerarioTransient> itinerariosDestinoCol;
-	private ItinerarioTransient itinerarioOrigenSelect;
-	private ItinerarioTransient itinerarioDestinoSelect;
+	private ItinerarioTransient itinerarioIdaSelect;
+	private ItinerarioTransient itinerarioVueltaSelect;
 	
 	@EJB
 	private ItinerarioDAO itinerarioDao;
 	
 	public PasoDosVueloController(){
+		System.out.println("CONTROLLER PASO DOS");
 		pasoUnoCtrl = new PasoUnoFechaController();
-		itinerarioOrigenSelect = new ItinerarioTransient();
-		itinerarioDestinoSelect = new ItinerarioTransient();
+		itinerarioIdaSelect = new ItinerarioTransient();
+		itinerarioVueltaSelect = new ItinerarioTransient();
 	}
 	
 	@PostConstruct()
 	private void start(){
+	  System.out.println("@PostConstruct PASO DOS");
 	  pasoUnoCtrl = (PasoUnoFechaController) JsfUtil.obtenerObjetoSesion("pasoUnoCtr");
 	  itinerariosCol =  itinerarioDao.obtenerItinerarios();
 	  itinerariosDestinoCol =  itinerarioDao.obtenerItinerarios();
@@ -49,23 +51,41 @@ public class PasoDosVueloController {
 		itinerariosCol.size();
 	}
 	
-	  public void onRowSelect(SelectEvent event) {
+	  public void onRowSelectOrigen(SelectEvent event) {
 		  	System.out.println("entro select");
-		  	itinerarioOrigenSelect = ((ItinerarioTransient) event.getObject());
+		  	itinerarioIdaSelect = ((ItinerarioTransient) event.getObject());
 		  	System.out.println("nombre aeropuesto origen");
-		  	System.out.println(itinerarioOrigenSelect.getNombreAeropuertoOrigen() + "  " + itinerarioOrigenSelect.getIdVuelo());
+		  	System.out.println(itinerarioIdaSelect.getNombreAeropuertoOrigen() + "  " + itinerarioIdaSelect.getIdVuelo());
 	        /*FacesMessage msg = new FacesMessage("Car Selected", ((Car) event.getObject()).getId());
 	        FacesContext.getCurrentInstance().addMessage(null, msg);*/
 	  }
 	 
-	   public void onRowUnselect(UnselectEvent event) {
+	   public void onRowUnselectOrigen(UnselectEvent event) {
 		   	System.out.println("entro Un select");
-		   	itinerarioDestinoSelect = ((ItinerarioTransient) event.getObject());
+		   	itinerarioIdaSelect = ((ItinerarioTransient) event.getObject());
 		  	System.out.println("nombre aeropuesto origen");
-		  	System.out.println(itinerarioDestinoSelect.getNombreAeropuertoOrigen() + "  " + itinerarioDestinoSelect.getIdVuelo());
+		  	System.out.println(itinerarioIdaSelect.getNombreAeropuertoOrigen() + "  " + itinerarioIdaSelect.getIdVuelo());
 	        /*FacesMessage msg = new FacesMessage("Car Unselected", ((Car) event.getObject()).getId());
 	        FacesContext.getCurrentInstance().addMessage(null, msg);*/
 	  }
+	   
+		  public void onRowSelectDestino(SelectEvent event) {
+			  	System.out.println("entro select");
+			  	itinerarioVueltaSelect = ((ItinerarioTransient) event.getObject());
+			  	System.out.println("nombre aeropuesto origen");
+			  	System.out.println(itinerarioVueltaSelect.getNombreAeropuertoOrigen() + "  " + itinerarioVueltaSelect.getIdVuelo());
+		        /*FacesMessage msg = new FacesMessage("Car Selected", ((Car) event.getObject()).getId());
+		        FacesContext.getCurrentInstance().addMessage(null, msg);*/
+		  }
+		 
+		   public void onRowUnselectDestino(UnselectEvent event) {
+			   	System.out.println("entro Un select");
+			   	itinerarioVueltaSelect = ((ItinerarioTransient) event.getObject());
+			  	System.out.println("nombre aeropuesto origen");
+			  	System.out.println(itinerarioVueltaSelect.getNombreAeropuertoOrigen() + "  " + itinerarioVueltaSelect.getIdVuelo());
+		        /*FacesMessage msg = new FacesMessage("Car Unselected", ((Car) event.getObject()).getId());
+		        FacesContext.getCurrentInstance().addMessage(null, msg);*/
+		  }
 	
 
 	public PasoUnoFechaController getPasoUnoCtrl() {
@@ -96,14 +116,6 @@ public class PasoDosVueloController {
 		this.itinerariosCol = itinerariosCol;
 	}
 
-	public ItinerarioTransient getItinerarioOrigenSelect() {
-		return itinerarioOrigenSelect;
-	}
-
-	public void setItinerarioOrigenSelect(ItinerarioTransient itinerarioOrigenSelect) {
-		this.itinerarioOrigenSelect = itinerarioOrigenSelect;
-	}
-
 	public List<ItinerarioTransient> getItinerariosDestinoCol() {
 		return itinerariosDestinoCol;
 	}
@@ -112,12 +124,22 @@ public class PasoDosVueloController {
 		this.itinerariosDestinoCol = itinerariosDestinoCol;
 	}
 
-	public ItinerarioTransient getItinerarioDestinoSelect() {
-		return itinerarioDestinoSelect;
+	public ItinerarioTransient getItinerarioIdaSelect() {
+		return itinerarioIdaSelect;
 	}
 
-	public void setItinerarioDestinoSelect(ItinerarioTransient itinerarioDestinoSelect) {
-		this.itinerarioDestinoSelect = itinerarioDestinoSelect;
+	public void setItinerarioIdaSelect(ItinerarioTransient itinerarioIdaSelect) {
+		this.itinerarioIdaSelect = itinerarioIdaSelect;
 	}
+
+	public ItinerarioTransient getItinerarioVueltaSelect() {
+		return itinerarioVueltaSelect;
+	}
+
+	public void setItinerarioVueltaSelect(ItinerarioTransient itinerarioVueltaSelect) {
+		this.itinerarioVueltaSelect = itinerarioVueltaSelect;
+	}
+
+
 
 }
