@@ -11,113 +11,113 @@
 			<h:outputStylesheet name="css/style.css" />
 		<!-- <h:outputStylesheet name="bootstrap/css/bootstrap.css" />-->
 			
-				<h:form id="formPageFecha">
-					<p:panel id="idPanelPageUno" header="Compra de pasajes">
-					 </p:panel>
-						<h:panelGrid columns="3" cellspacing="5" style=" width:50%; text-align:left;">
-							<p:commandButton value="Aceptar" action="#{pasoUnoCtr.buscarLista()}" update="idPanelPageUno" />
-						</h:panelGrid> 
-
-		<p:fieldset legend="¿A dónde quieres viajar?">
-					<b:row styleClass="show-grid">
-						<b:column col-md="2" offset="1">
-							<b:column col-md="12">
-								<b:column col-md="12">
-									<p:selectOneRadio
-										value="#{pasoUnoCtr.idayVuelaSelect}" layout="grid" columns="1">
-										<p:ajax process="@this" update="idIdaYVuelta" />
-										<f:selectItem itemLabel="Ida y vuelta" itemValue="true" />
-										<f:selectItem itemLabel="Sólo ida" itemValue="false" />
-									</p:selectOneRadio>
+	<h:form id="formPageFecha">
+			<p:panelGrid columns="1" style="width:100%">
+				<f:facet name="header">
+					<h:outputLabel value="Compra de pasajes" />
+				</f:facet>
+			</p:panelGrid>					 
+			<div class="centerDiv">		 
+					<p:fieldset legend="¿A dónde quieres viajar?">
+							<b:row styleClass="show-grid">
+								<b:column col-md="2" offset="1">
+									<b:column col-md="12">
+										<b:column col-md="12">
+											<p:selectOneRadio
+												value="#{pasoUnoCtr.idayVuelaSelect}" layout="grid" columns="1">
+												<p:ajax process="@this" update="idIdaYVuelta" />
+												<f:selectItem itemLabel="Ida y vuelta" itemValue="true" />
+												<f:selectItem itemLabel="Sólo ida" itemValue="false" />
+											</p:selectOneRadio>
+										</b:column>
+										<b:column col-md="12">
+										
+										</b:column>
+									</b:column>
 								</b:column>
-								<b:column col-md="12">
 								
+								<b:column col-md="4">
+										<b:column col-md="6">
+											<p:outputLabel value="Origen:" for="origen" />
+											<p:autoComplete id="origen" dropdown="true" size="20"
+												value="#{pasoUnoCtr.aeropuertoIdaSelect}" var="aer"
+												itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer}"
+												completeMethod="#{pasoUnoCtr.completeAeropuertoOrigen}"
+												converter="aeropuertoConverter" />
+										</b:column>
+										<b:column col-md="6">
+											<b:column col-md="12">
+												<p:outputLabel for="idFechaIda" value="Ida" />
+											</b:column>	
+											<b:column col-md="12">
+												<p:calendar id="idFechaIda" value="#{pasoUnoCtr.fechaIdaSelect}"
+													inputStyle="width:90px;" showOn="button">
+													<p:ajax event="dateSelect" update="idFechaVuelta" />
+												</p:calendar>
+											</b:column>
+										</b:column>
 								</b:column>
-							</b:column>
-						</b:column>
-						
-						<b:column col-md="4">
-								<b:column col-md="6">
-									<p:outputLabel value="Origen:" for="origen" />
-									<p:autoComplete id="origen" dropdown="true" size="20"
-										value="#{pasoUnoCtr.aeropuertoIdaSelect}" var="aer"
-										itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer}"
-										completeMethod="#{pasoUnoCtr.completeAeropuertoOrigen}"
-										converter="aeropuertoConverter" />
+								<b:column col-md="4">
+										<b:column col-md="6">
+											<p:outputLabel value="Destino:" for="destino" />
+											<p:autoComplete id="destino" dropdown="true"
+												value="#{pasoUnoCtr.aeropuertoLlegadaSelect}" var="aer"
+												itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer}"
+												completeMethod="#{pasoUnoCtr.completeAeropuertoDestino}"
+												converter="aeropuertoConverter" />
+										</b:column>
+										<b:column col-md="6" id="idIdaYVuelta" >
+											<h:panelGrid columns="1"
+												rendered="#{pasoUnoCtr.idayVuelaSelect == 'true'}">
+												<p:outputLabel for="idFechaVuelta" value="Vuelta" />
+												<p:calendar id="idFechaVuelta"
+													value="#{pasoUnoCtr.fechaVueltaSelect}"
+													inputStyle="width:90px;" showOn="button"
+													mindate="#{pasoUnoCtr.fechaIdaSelect}" />
+											</h:panelGrid>
+										</b:column>
 								</b:column>
-								<b:column col-md="6">
-									<b:column col-md="12">
-										<p:outputLabel for="idFechaIda" value="Ida" />
-									</b:column>	
-									<b:column col-md="12">
-										<p:calendar id="idFechaIda" value="#{pasoUnoCtr.fechaIdaSelect}"
-											inputStyle="width:90px;" showOn="button">
-											<p:ajax event="dateSelect" update="idFechaVuelta" />
-										</p:calendar>
+							</b:row>
+							<br/>
+							<b:row styleClass="show-grid">
+									<b:column col-md="2" offset="1">
+										<b:column col-md="12">
+											<b:column col-md="12">
+												<p:outputLabel for="utiSelector" value="Cabina:" />
+											</b:column>
+											<b:column col-md="12">
+												<p:selectOneMenu id="utiSelector"
+													converter="selectOneMenuConverter" value="#{pasoUnoCtr.cabinaSelect}"  >
+													<f:selectItem itemValue="#{null}" noSelectionOption="true" />
+													<f:selectItems value="#{pasoUnoCtr.listaCabina}" var="objeto"
+														itemValue="#{objeto}" itemLabel="#{objeto.tipoClase}" />
+												</p:selectOneMenu>
+											</b:column>
+										</b:column>
 									</b:column>
-								</b:column>
-						</b:column>
-						<b:column col-md="4">
-								<b:column col-md="6">
-									<p:outputLabel value="Destino:" for="destino" />
-									<p:autoComplete id="destino" dropdown="true"
-										value="#{pasoUnoCtr.aeropuertoLlegadaSelect}" var="aer"
-										itemLabel="#{aer.nombreAeropuerto}" itemValue="#{aer}"
-										completeMethod="#{pasoUnoCtr.completeAeropuertoDestino}"
-										converter="aeropuertoConverter" />
-								</b:column>
-								<b:column col-md="6" id="idIdaYVuelta" >
-									<h:panelGrid columns="1"
-										rendered="#{pasoUnoCtr.idayVuelaSelect == 'true'}">
-										<p:outputLabel for="idFechaVuelta" value="Vuelta" />
-										<p:calendar id="idFechaVuelta"
-											value="#{pasoUnoCtr.fechaVueltaSelect}"
-											inputStyle="width:90px;" showOn="button"
-											mindate="#{pasoUnoCtr.fechaIdaSelect}" />
-									</h:panelGrid>
-								</b:column>
-						</b:column>
-					</b:row>
-					<br/>
-					<b:row styleClass="show-grid">
-							<b:column col-md="2" offset="1">
-								<b:column col-md="12">
-									<b:column col-md="12">
-										<p:outputLabel for="utiSelector" value="Cabina:" />
+									<b:column col-md="2">
+										<b:column col-md="12">
+											<b:column col-md="12">
+													<p:outputLabel for="pasajeros" value="N. Pasajeros:" />
+											</b:column>
+											<b:column col-md="12">
+													<p:selectOneMenu id="pasajeros" value="#{pasoUnoCtr.numPasajeroSelect}" effect="fold" style="width:150px">
+														<f:selectItem itemLabel="Select" itemValue="" />
+														<f:selectItems value="#{pasoUnoCtr.numPasajeros}"  />
+													</p:selectOneMenu>
+											</b:column>
+										</b:column>
 									</b:column>
-									<b:column col-md="12">
-										<p:selectOneMenu id="utiSelector"
-											converter="selectOneMenuConverter" value="#{pasoUnoCtr.cabinaSelect}"  >
-											<f:selectItem itemValue="#{null}" noSelectionOption="true" />
-											<f:selectItems value="#{pasoUnoCtr.listaCabina}" var="objeto"
-												itemValue="#{objeto}" itemLabel="#{objeto.tipoClase}" />
-										</p:selectOneMenu>
-									</b:column>
-								</b:column>
-							</b:column>
-							<b:column col-md="2">
-								<b:column col-md="12">
-									<b:column col-md="12">
-											<p:outputLabel for="pasajeros" value="N. Pasajeros:" />
-									</b:column>
-									<b:column col-md="12">
-											<p:selectOneMenu id="pasajeros" value="#{pasoUnoCtr.numPasajeroSelect}" effect="fold" style="width:150px">
-												<f:selectItem itemLabel="Select" itemValue="" />
-												<f:selectItems value="#{pasoUnoCtr.numPasajeros}"  />
-											</p:selectOneMenu>
-									</b:column>
-								</b:column>
-							</b:column>
-					</b:row>
-					
-					<div id="idButton" align="center">
-						<button class="button" onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente &raquo;</button>
-					</div>
- 
- 		</p:fieldset>
- 
+							</b:row>
+							
+							<div id="idButton" align="center">
+								<button class="button" onclick="setStepIndex([{name:'index', value:1}]);return false">Siguiente &raquo;</button>
+							</div>
+		 
+		 		</p:fieldset>
+		 	</div>
+	 
 			</h:form>
-		
 	</ui:define>
  
 </ui:composition>

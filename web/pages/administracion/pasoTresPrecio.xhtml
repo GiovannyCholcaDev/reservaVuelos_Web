@@ -8,14 +8,13 @@
 
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
-	<h:form id="formPagePrecio">
+		<h:form id="formPagePrecio">
+		
 				<p:panelGrid columns="1" style="width:100%">
 					<f:facet name="header">
 						<h:outputLabel value="Confirma tu itinerario y precio" />
 					</f:facet>
 				</p:panelGrid>
-				<p:commandButton value="Aceptar"
-							action="#{pasoTresCtrl.clicBoton()}"  />
 				<div class="centerDiv">
 					<b:panel title="Itinerario" collapsible="false">
 						<b:row styleClass="fondoDiv" >
@@ -173,12 +172,62 @@
 								</h:outputLabel>
 							</b:column>
 						</b:row>
-					</b:panel>
+						<br/><br/>
+
+						<b:row styleClass="fondoDiv">
+							<b:column col-md="2" offset="1">
+								<h:outputLabel	value="Tarifa Individual"/>
+							</b:column>
+							<b:column col-md="1">
+								<h:outputLabel value="Impuestos"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Total Individual (USD)"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Total Pasajeros:"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Total a Pagar (USD)"/>
+							</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv">
+							<b:column col-md="2" offset="1">
+								<h:outputLabel
+									value="#{pasoTresCtrl.totalValorTarifa}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputLabel>
+							</b:column>
+							<b:column col-md="1">
+								<h:outputLabel
+									value="#{pasoTresCtrl.totalImpuestosTasa}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputLabel>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel
+									value="#{pasoTresCtrl.totalPagarTarifaIndividual}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputLabel>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="#{pasoUnoCtr.numPasajeroSelect}"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel
+									value="#{pasoTresCtrl.totalPagarTarifa}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputLabel>
+							</b:column>
+						</b:row>
+				</b:panel>
+					
 					<div id="idBut" align="center">
 						<button class="button" onclick="setStepIndex([{name:'index', value:1}]);return false">Atras</button>
 						<button class="button" onclick="setStepIndex([{name:'index', value:3}]);return false">Siguiente</button>
 					</div>
-		</div>
+				</div>
+	
 	</h:form>
 	</ui:define>
 </ui:composition>

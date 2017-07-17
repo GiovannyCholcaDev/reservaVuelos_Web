@@ -1,5 +1,7 @@
 package ec.utpl.controllers;
 
+import java.math.BigDecimal;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -13,6 +15,10 @@ public class PasoTresPrecioController {
 	private String lectura;
 	private PasoUnoFechaController pasoUnoCtrl;
 	private PasoDosVueloController pasoDosCtrl;
+	private BigDecimal totalValorTarifa;
+	private BigDecimal totalImpuestosTasa;
+	private BigDecimal totalPagarTarifaIndividual;
+	private BigDecimal totalPagarTarifa;
 	
 	public PasoTresPrecioController(){
 		System.out.println("CONTROLLER PASO TRES");
@@ -22,16 +28,39 @@ public class PasoTresPrecioController {
 	
 	@PostConstruct()
 	private void start(){
-			System.out.println("POST CONTRUCTOR CONTROLLER PASO TRES");
-		  pasoUnoCtrl = (PasoUnoFechaController) JsfUtil.obtenerObjetoSesion("pasoUnoCtr");
-		  pasoDosCtrl = (PasoDosVueloController) JsfUtil.obtenerObjetoSesion("pasoDosCtrl");
+		System.out.println("POST CONTRUCTOR CONTROLLER PASO TRES");
+		pasoUnoCtrl = (PasoUnoFechaController) JsfUtil.obtenerObjetoSesion("pasoUnoCtr");
+		pasoDosCtrl = (PasoDosVueloController) JsfUtil.obtenerObjetoSesion("pasoDosCtrl");
+		this.calcularVuelosPorPasajeros();
 	}
-	
 	
 	public void clicBoton(){
 		System.out.println("boton");
 		System.out.println(pasoDosCtrl.getItinerarioIdaSelect().getIdVuelo());
-		System.out.println(pasoDosCtrl.getItinerarioIdaSelect().getIdVuelo());
+	}
+	
+	private void calcularVuelosPorPasajeros() {
+		BigDecimal valorTarifaIda = pasoDosCtrl.getItinerarioIdaSelect().getValorTarifa();
+		BigDecimal valorTarifaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getValorTarifa();
+		
+		BigDecimal impuestoTasaIda = pasoDosCtrl.getItinerarioIdaSelect().getImpuestoTasa();
+		BigDecimal impuestoTasaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getImpuestoTasa();
+		
+		BigDecimal totalPagarIda = pasoDosCtrl.getItinerarioIdaSelect().getTotalPagarTarifa();
+		BigDecimal totalPagarVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getTotalPagarTarifa();
+		
+		if(valorTarifaIda == null) valorTarifaIda = BigDecimal.ZERO;
+		if(valorTarifaVuelta == null) valorTarifaVuelta = BigDecimal.ZERO;
+		if(impuestoTasaIda == null)	impuestoTasaIda = BigDecimal.ZERO;
+		if(impuestoTasaVuelta == null)impuestoTasaVuelta = BigDecimal.ZERO;
+		if(totalPagarIda == null) totalPagarIda = BigDecimal.ZERO;
+		if(totalPagarVuelta == null) totalPagarVuelta = BigDecimal.ZERO;
+		
+		totalValorTarifa = valorTarifaIda.add(valorTarifaVuelta);
+		totalImpuestosTasa = impuestoTasaIda.add(impuestoTasaVuelta);
+		totalPagarTarifaIndividual = totalPagarIda.add(totalPagarVuelta);
+		Integer numeroPasajeros = pasoUnoCtrl.getNumPasajeroSelect();
+		totalPagarTarifa = totalPagarTarifaIndividual.multiply(new BigDecimal(numeroPasajeros));
 	}
 	
 	public String getLectura() {
@@ -51,6 +80,38 @@ public class PasoTresPrecioController {
 	}
 	public void setPasoDosCtrl(PasoDosVueloController pasoDosCtrl) {
 		this.pasoDosCtrl = pasoDosCtrl;
+	}
+
+	public BigDecimal getTotalValorTarifa() {
+		return totalValorTarifa;
+	}
+
+	public void setTotalValorTarifa(BigDecimal totalValorTarifa) {
+		this.totalValorTarifa = totalValorTarifa;
+	}
+
+	public BigDecimal getTotalImpuestosTasa() {
+		return totalImpuestosTasa;
+	}
+
+	public void setTotalImpuestosTasa(BigDecimal totalImpuestosTasa) {
+		this.totalImpuestosTasa = totalImpuestosTasa;
+	}
+
+	public BigDecimal getTotalPagarTarifa() {
+		return totalPagarTarifa;
+	}
+
+	public void setTotalPagarTarifa(BigDecimal totalPagarTarifa) {
+		this.totalPagarTarifa = totalPagarTarifa;
+	}
+
+	public BigDecimal getTotalPagarTarifaIndividual() {
+		return totalPagarTarifaIndividual;
+	}
+
+	public void setTotalPagarTarifaIndividual(BigDecimal totalPagarTarifaIndividual) {
+		this.totalPagarTarifaIndividual = totalPagarTarifaIndividual;
 	}
 	
 	

@@ -3,19 +3,107 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
-		<p:panelGrid columns="1" style="width:100%">
-			<button
-				onclick="setStepIndex([{name:'index', value:2}]);return false">Atras</button>
-			<button
-				onclick="setStepIndex([{name:'index', value:4}]);return false">Siguiente</button>
-			<f:facet name="header">
-				<h:outputLabel value="Ingresa los datos de los pasajeros" />
-			</f:facet>
-		</p:panelGrid>
+	<h:form id="formPagePasajero">
+			<p:panelGrid columns="1" style="width:100%">
+				<f:facet name="header">
+					<h:outputLabel value="Ingresa los datos de los pasajeros" />
+				</f:facet>
+			</p:panelGrid>
+			<div class="centerDiv">
+					<b:panel title="Datos de los pasajeros" collapsible="false">
+						<b:row styleClass="fondoDiv" >
+								<b:column col-md="2">
+									<h:outputLabel value="Nombres" />
+								</b:column>
+								<b:column col-md="2">
+									<h:outputLabel style="aling-text:center" value="Apellidos" />
+								</b:column>
+								<b:column col-md="2">
+									<h:outputLabel value="Tipo Identificacion" />
+								</b:column>
+								<b:column col-md="2">
+									<h:outputLabel value="Número" />
+								</b:column>
+								<b:column col-md="2">
+									<h:outputLabel value="País de Emision" />
+								</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv" >
+								<b:column col-md="2">
+									<p:inputText value=""/>
+								</b:column>
+								<b:column col-md="2">
+									<p:inputText value=""/>
+								</b:column>
+								<b:column col-md="2">
+									<p:inputText value=""/>
+								</b:column>
+								<b:column col-md="2">
+									<p:inputText value=""/>
+								</b:column>
+								<b:column col-md="2">
+									<p:inputText value=""/>
+								</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv" >
+								<b:column col-md="6">
+									<h:outputLabel value="Informacion tributaria (sólo pasajeros ecuatorianos)" />
+								</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv" >
+								<b:column col-md="1">
+									<h:outputLabel value="Ruc" />
+								</b:column>
+								<b:column col-md="2">
+									<p:inputText value=""/>
+								</b:column>
+								<b:column col-md="2">
+									<h:outputLabel value="Razon social" />
+								</b:column>
+								<b:column col-md="2">
+									<p:inputText value=""/>
+								</b:column>
+								<b:column col-md="1" offset="1">
+									 <p:commandButton actionListener="#{pasoCuatroCtrl.agregarCliente}" id="idAddCli"
+									  update="idTableClie" icon="ui-icon-circle-plus" title="Agregar cliente" />
+								</b:column>
+						</b:row>
+
+					<p:dataTable id="idTableClie" var="cli" value="#{pasoCuatroCtrl.clienteCol}" emptyMessage="Registrar clientes" >
+						<p:column headerText="Nombre">
+							<h:outputText value="#{cli.nombreCli}" />
+						</p:column>
+
+						<p:column headerText="Apellido">
+							<h:outputText value="#{cli.apellidoCli}" />
+						</p:column>
+
+						<p:column headerText="Tipo Identificacion">
+							<h:outputText value="#{cli.identificacionCli}" />
+						</p:column>
+
+						<p:column headerText="Numero">
+							<h:outputText value="#{cli.pasaporte}" />
+						</p:column>
+						
+						<p:column headerText="Pais">
+							<h:outputText value="#{cli.nacionalidad}" />
+						</p:column>
+					</p:dataTable>
+
+				</b:panel>
+			
+					<div id="idButt" align="center">
+						<button class="button" onclick="setStepIndex([{name:'index', value:2}]);return false">Atras</button>
+						<button class="button" onclick="setStepIndex([{name:'index', value:4}]);return false">Siguiente</button>
+					</div>
+			</div>
+		</h:form>
 	</ui:define>
 
 </ui:composition>
