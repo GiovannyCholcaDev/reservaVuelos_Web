@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+							<b:panel title="Itinerario componente" collapsible="false">
+							
+								<b:row styleClass="fondoDiv" >
+										<b:column col-md="2">
+											<h:outputLabel value="Ida" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Salida" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Llegada" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Vuelo" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Cabina" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Abordaje" />
+										</b:column>
+								</b:row>
+								<b:row>
+										<b:column col-md="2">
+											<h:outputLabel value="#{pasoDosCtrl.itinerarioIdaSelect.fechaOrigen}">
+												  <f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy"/>
+											</h:outputLabel>
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="#{pasoDosCtrl.itinerarioIdaSelect.horaOrigen}">
+													<f:convertDateTime pattern="HH:mm" />
+											</h:outputLabel>
+											<h:outputText value="&#160;#{pasoDosCtrl.itinerarioIdaSelect.ciudadOrigen}" />
+											<h:outputText value="&#160;(#{pasoDosCtrl.itinerarioIdaSelect.abreviaturaOrigen})"/>
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="#{pasoDosCtrl.itinerarioIdaSelect.fechaDestino}">
+												 <f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy"/>
+											</h:outputLabel>
+											<h:outputLabel value="&#160;&#160;&#160;&#160;&#160;" />
+											<h:outputLabel value="#{pasoDosCtrl.itinerarioIdaSelect.horaDestino}">
+												<f:convertDateTime pattern="HH:mm"/>
+											</h:outputLabel>
+											<h:outputText value="&#160;#{pasoDosCtrl.itinerarioIdaSelect.ciudadDestino}"/>
+											<h:outputText value="&#160;(#{pasoDosCtrl.itinerarioIdaSelect.abreviaturaDestino})"/>
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{pasoDosCtrl.itinerarioIdaSelect.numeroVuelo}"/>
+											<h:outputText value="&#160;-&#160;"/>
+											<h:outputText value="#{pasoDosCtrl.itinerarioIdaSelect.tipoAvion}"/>
+											<h:outputText value="#{pasoDosCtrl.itinerarioIdaSelect.aerolinea}"/>
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{pasoDosCtrl.itinerarioIdaSelect.tipoClase}" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{pasoDosCtrl.itinerarioIdaSelect.abordaje}" />
+										</b:column>
+								</b:row>
+								
+								<br/>
+								
+								<b:row styleClass="fondoDiv" >
+										<b:column col-md="2">
+											<h:outputLabel value="Vuelta" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Salida" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Llegada" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Vuelo" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Cabina" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="Abordaje" />
+										</b:column>
+								</b:row>
+								<b:row>
+										<b:column col-md="2">
+											<h:outputLabel value="#{pasoDosCtrl.itinerarioVueltaSelect.fechaOrigen}">
+												  <f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy"/>
+											</h:outputLabel>
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="#{pasoDosCtrl.itinerarioVueltaSelect.horaOrigen}">
+													<f:convertDateTime pattern="HH:mm" />
+											</h:outputLabel>
+											<h:outputText value="&#160;#{pasoDosCtrl.itinerarioVueltaSelect.ciudadOrigen}" />
+											<h:outputText value="&#160;(#{pasoDosCtrl.itinerarioVueltaSelect.abreviaturaOrigen})"/>
+										</b:column>
+										<b:column col-md="2">
+											<h:outputLabel value="#{pasoDosCtrl.itinerarioVueltaSelect.fechaDestino}">
+												 <f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy"/>
+											</h:outputLabel>
+											<h:outputLabel value="&#160;&#160;&#160;&#160;&#160;" />
+											<h:outputLabel value="#{pasoDosCtrl.itinerarioVueltaSelect.horaDestino}">
+												<f:convertDateTime pattern="HH:mm"/>
+											</h:outputLabel>
+											<h:outputText value="&#160;#{pasoDosCtrl.itinerarioVueltaSelect.ciudadDestino}"/>
+											<h:outputText value="&#160;(#{pasoDosCtrl.itinerarioVueltaSelect.abreviaturaDestino})"/>
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{pasoDosCtrl.itinerarioVueltaSelect.numeroVuelo}"/>
+											<h:outputText value="&#160;-&#160;"/>
+											<h:outputText value="#{pasoDosCtrl.itinerarioVueltaSelect.tipoAvion}"/>
+											<h:outputText value="#{pasoDosCtrl.itinerarioVueltaSelect.aerolinea}"/>
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{pasoDosCtrl.itinerarioVueltaSelect.tipoClase}" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{pasoDosCtrl.itinerarioVueltaSelect.abordaje}" />
+										</b:column>
+								</b:row>
+							</b:panel>
+</h:body>
+</html>

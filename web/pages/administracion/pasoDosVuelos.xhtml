@@ -10,6 +10,7 @@
 	<ui:define name="contenido">
 		<h:outputStylesheet name="css/style.css" />
 		<h:form id="formPageVuelos">
+		<h:inputHidden value="#{pasoTresCtrl.lectura}" />
 			<p:panelGrid columns="1" style="width:100%">
 				<f:facet name="header">
 					<h:outputLabel value="Ruta Seleccionada" />
@@ -267,7 +268,7 @@
 			<br/><br/>
 			
 			<p:dataTable id="idTablaDestino" var="car"
-				value="#{pasoDosCtrl.itinerariosCol}" selectionMode="single"
+				value="#{pasoDosCtrl.itinerariosDestinoCol}" selectionMode="single"
 				selection="#{pasoDosCtrl.itinerarioVueltaSelect}" rowKey="#{car.idVuelo}">
 				<f:facet name="header">Selecciona tu destino</f:facet>
 

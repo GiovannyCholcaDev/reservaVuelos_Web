@@ -20,6 +20,8 @@ public class PasoCuatroPasajeroController {
 	private PasoDosVueloController pasoDosCtrl;
 	private PasoTresPrecioController pasoTresCtrl;
 	private List<Cliente> clienteCol;
+	private Cliente clienteIngreso;
+	private List<String> paisesCol;
 	
 	public PasoCuatroPasajeroController() {
 		System.out.println("CONTROLLER PASO CUATRO");
@@ -27,6 +29,8 @@ public class PasoCuatroPasajeroController {
 		pasoDosCtrl = new PasoDosVueloController();
 		pasoTresCtrl = new PasoTresPrecioController();
 		clienteCol = new ArrayList<Cliente>();
+		clienteIngreso = new Cliente();
+		paisesCol = new ArrayList<String>();
 	}
 	
 	@PostConstruct()
@@ -35,11 +39,34 @@ public class PasoCuatroPasajeroController {
 		pasoUnoCtrl = (PasoUnoFechaController) JsfUtil.obtenerObjetoSesion("pasoUnoCtr");
 		pasoDosCtrl = (PasoDosVueloController) JsfUtil.obtenerObjetoSesion("pasoDosCtrl");
 		pasoTresCtrl = (PasoTresPrecioController) JsfUtil.obtenerObjetoSesion("pasoTresCtrl");
+		
+		this.obtenerListaPaises();
+	}
+	
+	private void obtenerListaPaises(){
+		paisesCol.add("Ecuador");
+		paisesCol.add("Peru");
+		paisesCol.add("Bolivia");
+		paisesCol.add("Colombia");
+		paisesCol.add("Brazil");
+		paisesCol.add("Argentina");
 	}
 	
 	
 	public void agregarCliente(ActionEvent actionEvent){
-		
+		if(pasoUnoCtrl.getNumPasajeroSelect().equals(clienteCol.size())){
+			return;
+		}
+		clienteCol.add(clienteIngreso);
+		clienteIngreso = new Cliente();
+	}
+	
+	public void remove(Cliente cliente) {
+		try {
+			clienteCol.remove(cliente);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getLectura() {
@@ -80,5 +107,21 @@ public class PasoCuatroPasajeroController {
 
 	public void setClienteCol(List<Cliente> clienteCol) {
 		this.clienteCol = clienteCol;
+	}
+
+	public Cliente getClienteIngreso() {
+		return clienteIngreso;
+	}
+
+	public void setClienteIngreso(Cliente clienteIngreso) {
+		this.clienteIngreso = clienteIngreso;
+	}
+
+	public List<String> getPaisesCol() {
+		return paisesCol;
+	}
+
+	public void setPaisesCol(List<String> paisesCol) {
+		this.paisesCol = paisesCol;
 	}
 }

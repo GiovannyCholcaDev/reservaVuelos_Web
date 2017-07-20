@@ -1,5 +1,6 @@
 package ec.utpl.controllers;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -40,14 +41,36 @@ public class PasoDosVueloController {
 	private void start(){
 	  System.out.println("@PostConstruct PASO DOS");
 	  pasoUnoCtrl = (PasoUnoFechaController) JsfUtil.obtenerObjetoSesion("pasoUnoCtr");
-	  itinerariosCol =  itinerarioDao.obtenerItinerarios();
-	  itinerariosDestinoCol =  itinerarioDao.obtenerItinerarios();
+	  this.obtenerItinerarioOrigen();
+	  this.obtenerItinerarioDestino();
+	}
+	
+	public void obtenerItinerarioOrigen(){
+		Integer idAeropuestoOrigen = pasoUnoCtrl.getAeropuertoIdaSelect().getIdAeropuerto();
+		Integer idAeropuestoDestino = pasoUnoCtrl.getAeropuertoLlegadaSelect().getIdAeropuerto();
+		Date fechaIda = pasoUnoCtrl.getFechaIdaSelect();
+		Integer idCabina = pasoUnoCtrl.getCabinaSelect().getIdClasificacionCabina();
+		if(idAeropuestoOrigen != null && fechaIda != null && idCabina != null){
+			itinerariosCol =  itinerarioDao.obtenerItinerarios(idAeropuestoOrigen, idAeropuestoDestino, fechaIda, idCabina);
+			itinerariosCol.size();
+		}
+	}
+	
+	public void obtenerItinerarioDestino(){
+		Integer idAeropuestoOrigen = pasoUnoCtrl.getAeropuertoLlegadaSelect().getIdAeropuerto();
+		Integer idAeropuestoDestino = pasoUnoCtrl.getAeropuertoIdaSelect().getIdAeropuerto();
+		Date fechaVuelta = pasoUnoCtrl.getFechaVueltaSelect();
+		Integer idCabina = pasoUnoCtrl.getCabinaSelect().getIdClasificacionCabina();
+		if(idAeropuestoDestino != null && fechaVuelta != null && idCabina != null){
+			itinerariosDestinoCol =  itinerarioDao.obtenerItinerarios(idAeropuestoOrigen, idAeropuestoDestino, fechaVuelta, idCabina);
+			itinerariosDestinoCol.size();
+		}
 	}
 	
 	public void clicBoton(){
 		System.out.println(pasoUnoCtrl.getAeropuertoIdaSelect().getNombreAeropuerto());
 		System.out.println(pasoUnoCtrl.getAeropuertoLlegadaSelect().getNombreAeropuerto());
-		itinerariosCol = itinerarioDao.obtenerItinerarios();
+		//itinerariosCol = itinerarioDao.obtenerItinerarios();
 		itinerariosCol.size();
 	}
 	

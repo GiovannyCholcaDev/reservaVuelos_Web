@@ -8,6 +8,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
+import ec.utpl.util.JsfUtil;
+
 /**
  * @author Giovanny Cholca
  *
@@ -16,6 +18,9 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class MenuController {
 
+	private PasoUnoFechaController pasoUnoCtrl;
+	private PasoDosVueloController pasoDosCtrl;
+	private PasoTresPrecioController pasoTresCtrl;
 	private int stepIndex;
 
 	public int getStepIndex() {
@@ -43,10 +48,20 @@ public class MenuController {
 				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoUnoFecha.jsf");
 				break;
 			case 1:
+				pasoDosCtrl = (PasoDosVueloController) JsfUtil.obtenerObjetoSesion("pasoDosCtrl");
+				pasoDosCtrl.obtenerItinerarioOrigen();
+				pasoDosCtrl.obtenerItinerarioDestino();
 				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoDosVuelos.jsf");
 				break;
 			case 2:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoTresPrecio.jsf");
+				pasoTresCtrl = (PasoTresPrecioController) JsfUtil.obtenerObjetoSesion("pasoTresCtrl");
+				Boolean opcion = pasoTresCtrl.validarItinerarios();
+				if(opcion){
+					pasoTresCtrl.calcularVuelosPorPasajeros();
+					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoTresPrecio.jsf");
+				}else{
+					JsfUtil.msgError("Las fechas seleccionadas no son validas");
+				}
 				break;
 			case 3:
 				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoCuatroPasajeros.jsf");
@@ -65,6 +80,30 @@ public class MenuController {
 			e.printStackTrace();
 		}
 
+	}
+
+	public PasoUnoFechaController getPasoUnoCtrl() {
+		return pasoUnoCtrl;
+	}
+
+	public void setPasoUnoCtrl(PasoUnoFechaController pasoUnoCtrl) {
+		this.pasoUnoCtrl = pasoUnoCtrl;
+	}
+
+	public PasoDosVueloController getPasoDosCtrl() {
+		return pasoDosCtrl;
+	}
+
+	public void setPasoDosCtrl(PasoDosVueloController pasoDosCtrl) {
+		this.pasoDosCtrl = pasoDosCtrl;
+	}
+
+	public PasoTresPrecioController getPasoTresCtrl() {
+		return pasoTresCtrl;
+	}
+
+	public void setPasoTresCtrl(PasoTresPrecioController pasoTresCtrl) {
+		this.pasoTresCtrl = pasoTresCtrl;
 	}
 
 }

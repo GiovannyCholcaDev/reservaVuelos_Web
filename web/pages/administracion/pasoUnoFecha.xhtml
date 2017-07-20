@@ -12,6 +12,7 @@
 		<!-- <h:outputStylesheet name="bootstrap/css/bootstrap.css" />-->
 			
 	<h:form id="formPageFecha">
+			<h:inputHidden value="#{pasoDosCtrl.lectura}" />
 			<p:panelGrid columns="1" style="width:100%">
 				<f:facet name="header">
 					<h:outputLabel value="Compra de pasajes" />
@@ -20,7 +21,7 @@
 			<div class="centerDiv">		 
 					<p:fieldset legend="¿A dónde quieres viajar?">
 							<b:row styleClass="show-grid">
-								<b:column col-md="2" offset="1">
+								<b:column col-md="2">
 									<b:column col-md="12">
 										<b:column col-md="12">
 											<p:selectOneRadio
@@ -36,7 +37,7 @@
 									</b:column>
 								</b:column>
 								
-								<b:column col-md="4">
+								<b:column col-md="5">
 										<b:column col-md="6">
 											<p:outputLabel value="Origen:" for="origen" />
 											<p:autoComplete id="origen" dropdown="true" size="20"
@@ -51,13 +52,14 @@
 											</b:column>	
 											<b:column col-md="12">
 												<p:calendar id="idFechaIda" value="#{pasoUnoCtr.fechaIdaSelect}"
+													mindate="#{pasoUnoCtr.fechaActual}"
 													inputStyle="width:90px;" showOn="button">
 													<p:ajax event="dateSelect" update="idFechaVuelta" />
 												</p:calendar>
 											</b:column>
 										</b:column>
 								</b:column>
-								<b:column col-md="4">
+								<b:column col-md="5">
 										<b:column col-md="6">
 											<p:outputLabel value="Destino:" for="destino" />
 											<p:autoComplete id="destino" dropdown="true"

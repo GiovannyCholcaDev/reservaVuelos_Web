@@ -36,6 +36,7 @@ public class PasoUnoFechaController {
 	private Integer idCabinaSelect;
 	private List<Integer> numPasajeros;
 	private Integer numPasajeroSelect;
+	private Date fechaActual;
 
 	@EJB
 	private IAdminCrud adminCrud;
@@ -62,6 +63,7 @@ public class PasoUnoFechaController {
 		listaCabina = new ArrayList<Clasificacioncabina>();
 		cabinaSelect = new Clasificacioncabina();
 		
+		fechaActual = new Date();
 	}
 
 	@PostConstruct
@@ -249,6 +251,14 @@ public class PasoUnoFechaController {
 
 	public void setLectura(String lectura) {
 		this.lectura = lectura;
+	}
+
+	public Date getFechaActual() {
+		return fechaActual;
+	}
+
+	public void setFechaActual(Date fechaActual) {
+		this.fechaActual = fechaActual;
 	}
 
 }

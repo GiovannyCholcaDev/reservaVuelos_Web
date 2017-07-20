@@ -1,6 +1,8 @@
 package ec.utpl.controllers;
 
 import java.math.BigDecimal;
+import java.sql.Time;
+import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -31,7 +33,6 @@ public class PasoTresPrecioController {
 		System.out.println("POST CONTRUCTOR CONTROLLER PASO TRES");
 		pasoUnoCtrl = (PasoUnoFechaController) JsfUtil.obtenerObjetoSesion("pasoUnoCtr");
 		pasoDosCtrl = (PasoDosVueloController) JsfUtil.obtenerObjetoSesion("pasoDosCtrl");
-		this.calcularVuelosPorPasajeros();
 	}
 	
 	public void clicBoton(){
@@ -39,7 +40,27 @@ public class PasoTresPrecioController {
 		System.out.println(pasoDosCtrl.getItinerarioIdaSelect().getIdVuelo());
 	}
 	
-	private void calcularVuelosPorPasajeros() {
+	
+	public Boolean validarItinerarios(){
+		Date fechaIda = pasoDosCtrl.getItinerarioIdaSelect().getFechaOrigen();
+		Time horaIda = pasoDosCtrl.getItinerarioIdaSelect().getHoraOrigen();
+		Date fechaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getFechaOrigen();
+		Time horaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getHoraDestino();
+		
+		if(fechaVuelta.before(fechaIda)){
+			return false;
+		}
+		
+		if(fechaIda.compareTo(fechaVuelta) == 0) {
+			if(horaVuelta.before(horaIda)){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public void calcularVuelosPorPasajeros() {
+		
 		BigDecimal valorTarifaIda = pasoDosCtrl.getItinerarioIdaSelect().getValorTarifa();
 		BigDecimal valorTarifaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getValorTarifa();
 		
