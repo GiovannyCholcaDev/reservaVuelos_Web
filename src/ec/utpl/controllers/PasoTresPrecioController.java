@@ -42,33 +42,40 @@ public class PasoTresPrecioController {
 	
 	
 	public Boolean validarItinerarios(){
+
 		Date fechaIda = pasoDosCtrl.getItinerarioIdaSelect().getFechaOrigen();
 		Time horaIda = pasoDosCtrl.getItinerarioIdaSelect().getHoraOrigen();
-		Date fechaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getFechaOrigen();
-		Time horaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getHoraDestino();
-		
-		if(fechaVuelta.before(fechaIda)){
-			return false;
-		}
-		
-		if(fechaIda.compareTo(fechaVuelta) == 0) {
-			if(horaVuelta.before(horaIda)){
+		if(pasoUnoCtrl.getIdayVuelaSelect().equals("true")){
+			Date fechaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getFechaOrigen();
+			Time horaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getHoraDestino();
+			if(fechaVuelta.before(fechaIda)){
 				return false;
 			}
+			
+			if(fechaIda.compareTo(fechaVuelta) == 0) {
+				if(horaVuelta.before(horaIda)){
+					return false;
+				}
+			}
 		}
+		
 		return true;
 	}
 	
 	public void calcularVuelosPorPasajeros() {
 		
 		BigDecimal valorTarifaIda = pasoDosCtrl.getItinerarioIdaSelect().getValorTarifa();
-		BigDecimal valorTarifaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getValorTarifa();
-		
 		BigDecimal impuestoTasaIda = pasoDosCtrl.getItinerarioIdaSelect().getImpuestoTasa();
-		BigDecimal impuestoTasaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getImpuestoTasa();
-		
 		BigDecimal totalPagarIda = pasoDosCtrl.getItinerarioIdaSelect().getTotalPagarTarifa();
-		BigDecimal totalPagarVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getTotalPagarTarifa();
+		BigDecimal valorTarifaVuelta = null;
+		BigDecimal impuestoTasaVuelta = null;
+		BigDecimal totalPagarVuelta = null;
+
+		if(pasoUnoCtrl.getIdayVuelaSelect().equals("true")){
+			 valorTarifaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getValorTarifa();
+			 impuestoTasaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getImpuestoTasa();
+			 totalPagarVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getTotalPagarTarifa();
+		}
 		
 		if(valorTarifaIda == null) valorTarifaIda = BigDecimal.ZERO;
 		if(valorTarifaVuelta == null) valorTarifaVuelta = BigDecimal.ZERO;

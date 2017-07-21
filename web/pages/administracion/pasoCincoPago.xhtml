@@ -12,13 +12,19 @@
 
 			<p:panelGrid columns="1" style="width:100%">
 				<f:facet name="header">
-					<h:outputLabel value="Selecciona tu medio de pago" />
+					<h:outputLabel value="SELECCIONA TU MEDIO DE PAGO" />
 				</f:facet>
 			</p:panelGrid>
 			<div class="centerDiv">
 						<ui:include src="/pages/template/itinerario.xhtml" />
 						
-						<h:outputLabel value="He leído y estoy de acuerdo con las condiciones relacionadas a la compra. " />
+						<b:row>
+							<b:column col-md="10" offset="1">
+								<p:selectBooleanCheckbox value="#{pasoCincoCtrl.confirmar}" />
+								<h:outputLabel value=" &#160; He leído y estoy de acuerdo con las condiciones relacionadas a la compra. " />
+							</b:column>
+						</b:row>
+
 							<div id="idB" align="center">
 								<button class="button"
 									onclick="setStepIndex([{name:'index', value:3}]);return false">Atras</button>

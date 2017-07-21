@@ -10,7 +10,7 @@
 <h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
 </h:head>
 <h:body>
-							<b:panel title="Itinerario componente" collapsible="false">
+							<b:panel title="Itinerario" collapsible="false">
 							
 								<b:row styleClass="fondoDiv" >
 										<b:column col-md="2">
@@ -71,8 +71,7 @@
 								</b:row>
 								
 								<br/>
-								
-								<b:row styleClass="fondoDiv" >
+								<b:row styleClass="fondoDiv" rendered="#{pasoUnoCtr.idayVuelaSelect == 'true'}" >
 										<b:column col-md="2">
 											<h:outputLabel value="Vuelta" />
 										</b:column>
@@ -92,7 +91,7 @@
 											<h:outputLabel value="Abordaje" />
 										</b:column>
 								</b:row>
-								<b:row>
+								<b:row rendered="#{pasoUnoCtr.idayVuelaSelect == 'true'}">
 										<b:column col-md="2">
 											<h:outputLabel value="#{pasoDosCtrl.itinerarioVueltaSelect.fechaOrigen}">
 												  <f:convertDateTime pattern="dd 'de' MMMM 'de' yyyy"/>

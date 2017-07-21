@@ -26,7 +26,7 @@
 										<b:column col-md="12">
 											<p:selectOneRadio
 												value="#{pasoUnoCtr.idayVuelaSelect}" layout="grid" columns="1">
-												<p:ajax process="@this" update="idIdaYVuelta" />
+												<p:ajax process="@this" update="idIdaYVuelta" listener="#{pasoUnoCtr.onClickIdaYVuleta()}" />
 												<f:selectItem itemLabel="Ida y vuelta" itemValue="true" />
 												<f:selectItem itemLabel="Sólo ida" itemValue="false" />
 											</p:selectOneRadio>

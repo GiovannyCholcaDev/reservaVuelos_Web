@@ -37,6 +37,31 @@ public class PasoDosVueloController {
 		itinerarioVueltaSelect = new ItinerarioTransient();
 	}
 	
+	public String validarPasoDos(){
+		String mensaje = null;
+		if(pasoUnoCtrl.getAeropuertoIdaSelect().getIdAeropuerto() == 0) {
+			return mensaje = "Ingrese el origen";
+		}
+		if(pasoUnoCtrl.getFechaIdaSelect() == null){
+			return mensaje = "Ingrese el fecha de ida";
+		}
+		if(pasoUnoCtrl.getAeropuertoLlegadaSelect().getIdAeropuerto() == 0) {
+			return mensaje = "Ingrese el destino";
+		}
+		if(pasoUnoCtrl.getNumPasajeroSelect().equals(0)){
+			return mensaje = "Ingrese el numero de pasajeros";
+		}
+		if(pasoUnoCtrl.getCabinaSelect() == null || pasoUnoCtrl.getCabinaSelect().getIdClasificacionCabina() == 0 ){
+			return mensaje = "Ingrese la cabina";
+		}
+		if(pasoUnoCtrl.getIdayVuelaSelect().equals("true")){
+			if(pasoUnoCtrl.getFechaVueltaSelect() == null){
+				return mensaje = "Ingrese fecha de vuelta";
+			}
+		}
+		return mensaje;
+	}
+	
 	@PostConstruct()
 	private void start(){
 	  System.out.println("@PostConstruct PASO DOS");

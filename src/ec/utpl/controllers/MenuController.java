@@ -49,9 +49,15 @@ public class MenuController {
 				break;
 			case 1:
 				pasoDosCtrl = (PasoDosVueloController) JsfUtil.obtenerObjetoSesion("pasoDosCtrl");
-				pasoDosCtrl.obtenerItinerarioOrigen();
-				pasoDosCtrl.obtenerItinerarioDestino();
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoDosVuelos.jsf");
+				String mensaje = pasoDosCtrl.validarPasoDos();
+				if(mensaje == null || mensaje == ""){
+					pasoDosCtrl.obtenerItinerarioOrigen();
+					pasoDosCtrl.obtenerItinerarioDestino();
+					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoDosVuelos.jsf");
+				}else{
+					this.stepIndex = stepIndex - 1;
+					JsfUtil.msgAdvert(mensaje);
+				}
 				break;
 			case 2:
 				pasoTresCtrl = (PasoTresPrecioController) JsfUtil.obtenerObjetoSesion("pasoTresCtrl");
@@ -60,6 +66,7 @@ public class MenuController {
 					pasoTresCtrl.calcularVuelosPorPasajeros();
 					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoTresPrecio.jsf");
 				}else{
+					this.stepIndex = stepIndex - 1;
 					JsfUtil.msgError("Las fechas seleccionadas no son validas");
 				}
 				break;

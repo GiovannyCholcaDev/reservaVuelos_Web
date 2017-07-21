@@ -13,7 +13,26 @@ legend {
 
 .letraLbl{
 	font-size:25px;
+	color: #144d92;
 }
+
+.cantidadLbl{
+	font-size:17px;
+	color: #144d92;
+}
+
+.letraCiudad{
+   color: #144d92;
+}
+
+.ui-datatable .ui-datatable-header{
+	color: blue;
+}
+
+.ui-widget-header{
+	color: blue !important;
+}
+
 .fondoDiv{
 	background-color: lightblue;
 }

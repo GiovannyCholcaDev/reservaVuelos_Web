@@ -13,7 +13,7 @@
 		<h:inputHidden value="#{pasoTresCtrl.lectura}" />
 			<p:panelGrid columns="1" style="width:100%">
 				<f:facet name="header">
-					<h:outputLabel value="Ruta Seleccionada" />
+					<h:outputLabel value="RUTA SELECCIONADA" />
 				</f:facet>
 			</p:panelGrid>
 
@@ -33,11 +33,13 @@
 			</b:row>
 			
 			<b:row styleClass="fondoDiv" >
-				<b:column col-md="2" offset="3">
+				<b:column col-md="2" offset="3" style="text-align:center;">
 					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.aeropuertoIdaSelect.nombreAeropuerto}" />
+					<h:outputLabel styleClass="letraCiudad" value="#{pasoUnoCtr.aeropuertoIdaSelect.ciudad}" />
 				</b:column>
 				<b:column col-md="2" style="text-align:center;">
 					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.aeropuertoLlegadaSelect.nombreAeropuerto}"/>
+					<h:outputLabel styleClass="letraCiudad" value="#{pasoUnoCtr.aeropuertoLlegadaSelect.ciudad}"/>
 				</b:column>
 				<b:column col-md="1" style="text-align:center;">
 					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.numPasajeroSelect}" />
@@ -46,38 +48,30 @@
 					<h:outputLabel styleClass="fontNormal" value="#{pasoUnoCtr.cabinaSelect.tipoClase}" />
 				</b:column>
 			</b:row>
-			
-			<h:panelGrid columns="3" cellspacing="5"
-				style=" width:50%; text-align:left;">
-				<p:commandButton value="Aceptar"
-					action="#{pasoDosCtrl.clicBoton()}" update="formPageVuelos" />
-			</h:panelGrid>
-
+			<br/>
 			<p:dataTable id="idTablaOrigen" var="car"
 				value="#{pasoDosCtrl.itinerariosCol}" selectionMode="single"
 				selection="#{pasoDosCtrl.itinerarioIdaSelect}" rowKey="#{car.idVuelo}">
-				<f:facet name="header">Selecciona tu ida</f:facet>
+				<f:facet name="header">SELECCIONA TU IDA</f:facet>
 
 <!-- 				<p:ajax event="rowSelect"   listener="#{pasoDosCtrl.onRowSelectOrigen}"/> -->
 <!-- 				<p:ajax event="rowUnselect"	listener="#{pasoDosCtrl.onRowUnselectOrigen}" /> -->
 
 				<p:columnGroup type="header">
-					<p:row>
+					<p:row style="width:100%">
 <!-- 						<p:column rowspan="3" headerText="Origen" /> -->
 						<p:column rowspan="2" headerText=""  style="width:40px"/>
-						<p:column colspan="4" headerText="Origen"/>
-						<p:column colspan="4" headerText="Destino"/>
+						<p:column colspan="3" headerText="Origen"/>
+						<p:column colspan="3" headerText="Destino"/>
 						<p:column colspan="4" headerText="Info"/>
 					</p:row>
 					<p:row>
 						<p:column headerText="Fecha"/>
 						<p:column headerText="Hora"/>
-						<p:column headerText="Salida"/>
 						<p:column headerText="Ciudad"/>
 						
 						<p:column headerText="Fecha"/>
 						<p:column headerText="Hora"/>
-						<p:column headerText="Salida"/>
 						<p:column headerText="Ciudad"/>
 						
 						<p:column headerText="Duración"/>
@@ -87,7 +81,6 @@
 						
 					</p:row>
 				</p:columnGroup>
-
 
 					<p:column style="width:40px">
 						<p:rowToggler/>
@@ -102,10 +95,9 @@
 							<f:convertDateTime pattern="HH:mm" />
 						</h:outputText>
 					</p:column>
-					<p:column headerText="Salida">
-						<h:outputText value="#{car.abreviaturaOrigen}" />
-					</p:column>
 					<p:column headerText="Ciudad">
+					    <h:outputText value="#{car.abreviaturaOrigen}" />
+					     <h:outputText value="&#160;-&#160;"/>
 						<h:outputText value="#{car.ciudadOrigen}" />
 					</p:column>
 					<p:column headerText="Aeropuerto" visible="false">
@@ -122,11 +114,10 @@
 							<f:convertDateTime pattern="HH:mm" />
 						</h:outputText>
 					</p:column>
-					<p:column headerText="Salida">
-						<h:outputText value="#{car.abreviaturaDestino}" />
-					</p:column>
 					<p:column headerText="Ciudad">
-						<h:outputText value="#{car.ciudadDestino}" />
+						 <h:outputText value="#{car.abreviaturaDestino}" />
+					     <h:outputText value="&#160;-&#160;"/>
+						 <h:outputText value="#{car.ciudadDestino}" />
 					</p:column>
 					<p:column headerText="Aeropuerto" visible="false">
 						<h:outputText value="#{car.nombreAeropuertoDestino}" />
@@ -267,10 +258,10 @@
 			
 			<br/><br/>
 			
-			<p:dataTable id="idTablaDestino" var="car"
+			<p:dataTable id="idTablaDestino" var="car" rendered="#{pasoDosCtrl.pasoUnoCtrl.idayVuelaSelect == 'true'}"
 				value="#{pasoDosCtrl.itinerariosDestinoCol}" selectionMode="single"
 				selection="#{pasoDosCtrl.itinerarioVueltaSelect}" rowKey="#{car.idVuelo}">
-				<f:facet name="header">Selecciona tu destino</f:facet>
+				<f:facet name="header">SELECCIONA TU DESTINO</f:facet>
 
 				<!--<p:ajax event="rowSelect"   listener="#{pasoDosCtrl.onRowSelectDestino}"/>
 				<p:ajax event="rowUnselect"	listener="#{pasoDosCtrl.onRowUnselectDestino}" />  -->
@@ -279,19 +270,17 @@
 					<p:row>
 <!-- 						<p:column rowspan="3" headerText="Origen" /> -->
 						<p:column rowspan="2" headerText=""  style="width:40px"/>
-						<p:column colspan="4" headerText="Origen"/>
-						<p:column colspan="4" headerText="Destino"/>
+						<p:column colspan="3" headerText="Origen"/>
+						<p:column colspan="3" headerText="Destino"/>
 						<p:column colspan="4" headerText="Info"/>
 					</p:row>
 					<p:row>
 						<p:column headerText="Fecha"/>
 						<p:column headerText="Hora"/>
-						<p:column headerText="Salida"/>
 						<p:column headerText="Ciudad"/>
 						
 						<p:column headerText="Fecha"/>
 						<p:column headerText="Hora"/>
-						<p:column headerText="Salida"/>
 						<p:column headerText="Ciudad"/>
 						
 						<p:column headerText="Duración"/>
@@ -316,10 +305,9 @@
 							<f:convertDateTime pattern="HH:mm" />
 						</h:outputText>
 					</p:column>
-					<p:column headerText="Salida">
-						<h:outputText value="#{car.abreviaturaOrigen}" />
-					</p:column>
 					<p:column headerText="Ciudad">
+					    <h:outputText value="#{car.abreviaturaOrigen}" />
+						<h:outputText value="&#160;-&#160;"/>
 						<h:outputText value="#{car.ciudadOrigen}" />
 					</p:column>
 					<p:column headerText="Aeropuerto" visible="false">
@@ -336,10 +324,9 @@
 							<f:convertDateTime pattern="HH:mm" />
 						</h:outputText>
 					</p:column>
-					<p:column headerText="Salida">
-						<h:outputText value="#{car.abreviaturaDestino}" />
-					</p:column>
 					<p:column headerText="Ciudad">
+						<h:outputText value="#{car.abreviaturaDestino}" />
+						<h:outputText value="&#160;-&#160;"/>
 						<h:outputText value="#{car.ciudadDestino}" />
 					</p:column>
 					<p:column headerText="Aeropuerto" visible="false">

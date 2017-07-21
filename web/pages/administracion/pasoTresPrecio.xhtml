@@ -9,10 +9,10 @@
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
 		<h:form id="formPagePrecio">
-		
+				<h:inputHidden value="#{pasoCuatroCtrl.lectura}" />
 				<p:panelGrid columns="1" style="width:100%">
 					<f:facet name="header">
-						<h:outputLabel value="Confirma tu itinerario y precio" />
+						<h:outputLabel value="CONFIRMA TU ITINERARIO Y PRECIO" />
 					</f:facet>
 				</p:panelGrid>
 				<div class="centerDiv">
@@ -21,12 +21,23 @@
 									
 					<b:panel title="Tarifa" collapsible="false">
 						<b:row styleClass="fondoDiv">
+							<b:column col-md="1" offset="1">
+								<h:outputLabel value="Tarifa Ida"/>
+							</b:column>
+							<b:column col-md="2" offset="1">
+								<h:outputLabel value="Impuesto Ida"/>
+							</b:column>
 							<b:column col-md="1">
+								<h:outputLabel value="Valor Ida"/>
+							</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv cantidadLbl">
+							<b:column col-md="1" offset="1">
 								<h:outputLabel value="#{pasoDosCtrl.itinerarioIdaSelect.valorTarifa}">
 									<f:convertNumber type="currency" currencySymbol="$" />
 								</h:outputLabel>
 							</b:column>
-							<b:column col-md="1">
+							<b:column col-md="2" offset="1">
 								<h:outputLabel value="#{pasoDosCtrl.itinerarioIdaSelect.impuestoTasa}">
 									<f:convertNumber type="currency" currencySymbol="$" />
 								</h:outputLabel>
@@ -37,14 +48,24 @@
 								</h:outputLabel>
 							</b:column>
 						</b:row>
-						<br/><br/>
-						<b:row styleClass="fondoDiv">
-							<b:column col-md="1">
+						<b:row styleClass="fondoDiv" rendered="#{pasoUnoCtr.idayVuelaSelect == 'true'}">
+							<b:column col-md="2" offset="1">
+								<h:outputLabel value="Tarifa Vuelta"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Impuesto Vuelta"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Valor Vuelta"/>
+							</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv cantidadLbl" rendered="#{pasoUnoCtr.idayVuelaSelect == 'true'}">
+							<b:column col-md="1" offset="1">
 								<h:outputLabel value="#{pasoDosCtrl.itinerarioVueltaSelect.valorTarifa}">
 									<f:convertNumber type="currency" currencySymbol="$" />
 								</h:outputLabel>
 							</b:column>
-							<b:column col-md="1">
+							<b:column col-md="2" offset="1">
 								<h:outputLabel value="#{pasoDosCtrl.itinerarioVueltaSelect.impuestoTasa}">
 									<f:convertNumber type="currency" currencySymbol="$" />
 								</h:outputLabel>
@@ -54,14 +75,14 @@
 									<f:convertNumber type="currency" currencySymbol="$" />
 								</h:outputLabel>
 							</b:column>
+							<br/>
 						</b:row>
-						<br/><br/>
-
 						<b:row styleClass="fondoDiv">
+							<br/>
 							<b:column col-md="2" offset="1">
 								<h:outputLabel	value="Tarifa Individual"/>
 							</b:column>
-							<b:column col-md="1">
+							<b:column col-md="2">
 								<h:outputLabel value="Impuestos"/>
 							</b:column>
 							<b:column col-md="2">
@@ -74,14 +95,14 @@
 								<h:outputLabel value="Total a Pagar (USD)"/>
 							</b:column>
 						</b:row>
-						<b:row styleClass="fondoDiv">
+						<b:row styleClass="fondoDiv letraLbl">
 							<b:column col-md="2" offset="1">
 								<h:outputLabel
 									value="#{pasoTresCtrl.totalValorTarifa}">
 									<f:convertNumber type="currency" currencySymbol="$" />
 								</h:outputLabel>
 							</b:column>
-							<b:column col-md="1">
+							<b:column col-md="2">
 								<h:outputLabel
 									value="#{pasoTresCtrl.totalImpuestosTasa}">
 									<f:convertNumber type="currency" currencySymbol="$" />

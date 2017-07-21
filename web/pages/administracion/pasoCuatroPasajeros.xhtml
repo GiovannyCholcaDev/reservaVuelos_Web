@@ -9,10 +9,10 @@
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
 	<h:form id="formPagePasajero">
-	
+			<h:inputHidden value="#{pasoCincoCtrl.lectura}" />
 			<p:panelGrid columns="1" style="width:100%">
 				<f:facet name="header">
-					<h:outputLabel value="Ingresa los datos de los pasajeros" />
+					<h:outputLabel value="INGRESE LOS DATOS DE LOS PASAJEROS" />
 				</f:facet>
 			</p:panelGrid>
 				<div class="centerDiv">

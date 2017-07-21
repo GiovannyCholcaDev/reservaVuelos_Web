@@ -83,9 +83,15 @@ public class PasoUnoFechaController {
 	}
 
 	private void obtenerNumPasajeros() {
-		for (int i = 1; i <= 10; i++) {
+		for (int i = 1; i <= 5; i++) {
 			numPasajeros.add(i);
 		}
+	}
+	
+	public void onClickIdaYVuleta(){
+		if(this.idayVuelaSelect.equals("false")){
+			this.fechaVueltaSelect = null;
+		} 
 	}
 
 	public List<Aeropuerto> completeAeropuertoOrigen(String query) {
