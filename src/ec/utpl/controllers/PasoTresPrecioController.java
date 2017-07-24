@@ -41,25 +41,35 @@ public class PasoTresPrecioController {
 	}
 	
 	
-	public Boolean validarItinerarios(){
-
-		Date fechaIda = pasoDosCtrl.getItinerarioIdaSelect().getFechaOrigen();
-		Time horaIda = pasoDosCtrl.getItinerarioIdaSelect().getHoraOrigen();
-		if(pasoUnoCtrl.getIdayVuelaSelect().equals("true")){
-			Date fechaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getFechaOrigen();
-			Time horaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getHoraDestino();
-			if(fechaVuelta.before(fechaIda)){
-				return false;
-			}
-			
-			if(fechaIda.compareTo(fechaVuelta) == 0) {
-				if(horaVuelta.before(horaIda)){
-					return false;
+	public String validarItinerarios(){
+		String msg = "";
+		if(pasoDosCtrl.getItinerarioIdaSelect() == null){
+			msg = "Seleccione el Initerario de Ida";
+		}else{
+			Date fechaIda = pasoDosCtrl.getItinerarioIdaSelect().getFechaOrigen();
+			Time horaIda = pasoDosCtrl.getItinerarioIdaSelect().getHoraOrigen();
+				if(pasoUnoCtrl.getIdayVuelaSelect().equals("true")){
+					if(pasoDosCtrl.getItinerarioVueltaSelect() == null){
+						msg =  "Seleccione Itinerario para un vuelo de Retorno";
+					}else{
+						Date fechaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getFechaOrigen();
+						Time horaVuelta = pasoDosCtrl.getItinerarioVueltaSelect().getHoraDestino();
+						if(fechaVuelta.before(fechaIda)){
+							msg ="La fecha de Retorno no puede ser anterior a la Fecha de Ida";
+						}
+						
+						if(fechaIda.compareTo(fechaVuelta) == 0) {
+							if(fechaIda.compareTo(fechaVuelta) == 0 ){
+								msg ="Las horas en el mismo dia no pueden ser iguales";
+							}
+							if(horaVuelta.before(horaIda)){
+								msg ="La hora de retorno no puede ser anterior a la hora de Ida";
+							}
+						}
+					}
 				}
-			}
 		}
-		
-		return true;
+		return msg;
 	}
 	
 	public void calcularVuelosPorPasajeros() {

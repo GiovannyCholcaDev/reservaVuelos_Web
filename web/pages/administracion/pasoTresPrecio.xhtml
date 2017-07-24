@@ -77,53 +77,9 @@
 							</b:column>
 							<br/>
 						</b:row>
-						<b:row styleClass="fondoDiv">
-							<br/>
-							<b:column col-md="2" offset="1">
-								<h:outputLabel	value="Tarifa Individual"/>
-							</b:column>
-							<b:column col-md="2">
-								<h:outputLabel value="Impuestos"/>
-							</b:column>
-							<b:column col-md="2">
-								<h:outputLabel value="Total Individual (USD)"/>
-							</b:column>
-							<b:column col-md="2">
-								<h:outputLabel value="Total Pasajeros:"/>
-							</b:column>
-							<b:column col-md="2">
-								<h:outputLabel value="Total a Pagar (USD)"/>
-							</b:column>
-						</b:row>
-						<b:row styleClass="fondoDiv letraLbl">
-							<b:column col-md="2" offset="1">
-								<h:outputLabel
-									value="#{pasoTresCtrl.totalValorTarifa}">
-									<f:convertNumber type="currency" currencySymbol="$" />
-								</h:outputLabel>
-							</b:column>
-							<b:column col-md="2">
-								<h:outputLabel
-									value="#{pasoTresCtrl.totalImpuestosTasa}">
-									<f:convertNumber type="currency" currencySymbol="$" />
-								</h:outputLabel>
-							</b:column>
-							<b:column col-md="2">
-								<h:outputLabel
-									value="#{pasoTresCtrl.totalPagarTarifaIndividual}">
-									<f:convertNumber type="currency" currencySymbol="$" />
-								</h:outputLabel>
-							</b:column>
-							<b:column col-md="2">
-								<h:outputLabel value="#{pasoUnoCtr.numPasajeroSelect}"/>
-							</b:column>
-							<b:column col-md="2">
-								<h:outputLabel
-									value="#{pasoTresCtrl.totalPagarTarifa}">
-									<f:convertNumber type="currency" currencySymbol="$" />
-								</h:outputLabel>
-							</b:column>
-						</b:row>
+						
+						<ui:include src="/pages/template/totalAPagar.xhtml"/>
+						
 					</b:panel>
 					
 					<div id="idBut" align="center">

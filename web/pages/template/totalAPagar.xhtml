@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<h:outputStylesheet library="css" name="style.css"></h:outputStylesheet>
+</h:head>
+<h:body>
+						<b:row styleClass="fondoDiv">
+							<br/>
+							<b:column col-md="2" offset="1">
+								<h:outputLabel	value="Tarifa(1p)"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Impuestos"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Total Individual (USD)"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Total Pasajeros:"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Total a Pagar (USD)"/>
+							</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv letraLbl">
+							<b:column col-md="2" offset="1">
+								<h:outputLabel
+									value="#{pasoTresCtrl.totalValorTarifa}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputLabel>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel
+									value="#{pasoTresCtrl.totalImpuestosTasa}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputLabel>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel
+									value="#{pasoTresCtrl.totalPagarTarifaIndividual}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputLabel>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="#{pasoUnoCtr.numPasajeroSelect}"/>
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel
+									value="#{pasoTresCtrl.totalPagarTarifa}">
+									<f:convertNumber type="currency" currencySymbol="$" />
+								</h:outputLabel>
+							</b:column>
+						</b:row>
+							
+							
+</h:body>
+</html>

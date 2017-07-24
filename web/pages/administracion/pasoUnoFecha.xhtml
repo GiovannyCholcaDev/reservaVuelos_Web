@@ -32,7 +32,6 @@
 											</p:selectOneRadio>
 										</b:column>
 										<b:column col-md="12">
-										
 										</b:column>
 									</b:column>
 								</b:column>
@@ -54,7 +53,7 @@
 												<p:calendar id="idFechaIda" value="#{pasoUnoCtr.fechaIdaSelect}"
 													mindate="#{pasoUnoCtr.fechaActual}"
 													inputStyle="width:90px;" showOn="button">
-													<p:ajax event="dateSelect" update="idFechaVuelta" />
+													<p:ajax event="dateSelect" listener="#{pasoUnoCtr.onChancheDateIda()}" update="idFechaVuelta" />
 												</p:calendar>
 											</b:column>
 										</b:column>

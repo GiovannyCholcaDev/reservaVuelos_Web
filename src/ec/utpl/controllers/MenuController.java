@@ -21,6 +21,9 @@ public class MenuController {
 	private PasoUnoFechaController pasoUnoCtrl;
 	private PasoDosVueloController pasoDosCtrl;
 	private PasoTresPrecioController pasoTresCtrl;
+	private PasoCuatroPasajeroController pasoCuatroCtrl;
+	private PasoCincoPagoController pasoCincoCtl;
+	private PasoSeisController pasoSeisCtrl;
 	private int stepIndex;
 
 	public int getStepIndex() {
@@ -56,28 +59,43 @@ public class MenuController {
 					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoDosVuelos.jsf");
 				}else{
 					this.stepIndex = stepIndex - 1;
-					JsfUtil.msgAdvert(mensaje);
+					JsfUtil.msgError(mensaje);
 				}
 				break;
 			case 2:
 				pasoTresCtrl = (PasoTresPrecioController) JsfUtil.obtenerObjetoSesion("pasoTresCtrl");
-				Boolean opcion = pasoTresCtrl.validarItinerarios();
-				if(opcion){
+				String opcion = pasoTresCtrl.validarItinerarios();
+				if(opcion == null || opcion == ""){
 					pasoTresCtrl.calcularVuelosPorPasajeros();
 					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoTresPrecio.jsf");
 				}else{
 					this.stepIndex = stepIndex - 1;
-					JsfUtil.msgError("Las fechas seleccionadas no son validas");
+					 JsfUtil.msgError(opcion);
 				}
 				break;
 			case 3:
+				pasoCuatroCtrl = (PasoCuatroPasajeroController) JsfUtil.obtenerObjetoSesion("pasoCuatroCtrl");
 				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoCuatroPasajeros.jsf");
 				break;
 			case 4:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoCincoPago.jsf");
+				pasoCincoCtl = (PasoCincoPagoController) JsfUtil.obtenerObjetoSesion("pasoCincoCtrl");
+				String mensaj = pasoCincoCtl.validarPageCinco();
+				if(mensaj != null && mensaj != ""){
+					this.stepIndex = stepIndex - 1;
+					 JsfUtil.msgError(mensaj);
+				}else{
+					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoCincoPago.jsf");
+				}
 				break;
 			case 5:
-				ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoSeisConfirmacion.jsf");
+				pasoSeisCtrl = (PasoSeisController) JsfUtil.obtenerObjetoSesion("pasoSeisCtrl");
+				String msg = pasoSeisCtrl.validarPasoSeis();
+				if(msg != null && msg != ""){
+					this.stepIndex = stepIndex - 1;
+					 JsfUtil.msgError(msg);
+				}else{
+					ec.redirect(ec.getRequestContextPath() + "/pages/administracion/pasoSeisConfirmacion.jsf");
+				}
 				break;
 			default:
 				break;
@@ -111,6 +129,30 @@ public class MenuController {
 
 	public void setPasoTresCtrl(PasoTresPrecioController pasoTresCtrl) {
 		this.pasoTresCtrl = pasoTresCtrl;
+	}
+
+	public PasoCuatroPasajeroController getPasoCuatroCtrl() {
+		return pasoCuatroCtrl;
+	}
+
+	public void setPasoCuatroCtrl(PasoCuatroPasajeroController pasoCuatroCtrl) {
+		this.pasoCuatroCtrl = pasoCuatroCtrl;
+	}
+
+	public PasoCincoPagoController getPasoCincoCtl() {
+		return pasoCincoCtl;
+	}
+
+	public void setPasoCincoCtl(PasoCincoPagoController pasoCincoCtl) {
+		this.pasoCincoCtl = pasoCincoCtl;
+	}
+
+	public PasoSeisController getPasoSeisCtrl() {
+		return pasoSeisCtrl;
+	}
+
+	public void setPasoSeisCtrl(PasoSeisController pasoSeisCtrl) {
+		this.pasoSeisCtrl = pasoSeisCtrl;
 	}
 
 }

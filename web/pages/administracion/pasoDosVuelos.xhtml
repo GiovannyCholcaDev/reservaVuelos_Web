@@ -90,9 +90,9 @@
 							  <f:convertDateTime pattern="dd/MM/yyyy" />
 						</h:outputText>
 					</p:column>
-					<p:column headerText="Hora">
+					<p:column headerText="Horaa">
 						<h:outputText value="#{car.horaOrigen}">
-							<f:convertDateTime pattern="HH:mm" />
+							<f:convertDateTime  type="time" pattern="HH:mm" />
 						</h:outputText>
 					</p:column>
 					<p:column headerText="Ciudad">
@@ -261,7 +261,7 @@
 			<p:dataTable id="idTablaDestino" var="car" rendered="#{pasoDosCtrl.pasoUnoCtrl.idayVuelaSelect == 'true'}"
 				value="#{pasoDosCtrl.itinerariosDestinoCol}" selectionMode="single"
 				selection="#{pasoDosCtrl.itinerarioVueltaSelect}" rowKey="#{car.idVuelo}">
-				<f:facet name="header">SELECCIONA TU DESTINO</f:facet>
+				<f:facet name="header">SELECCIONA TU RETORNO</f:facet>
 
 				<!--<p:ajax event="rowSelect"   listener="#{pasoDosCtrl.onRowSelectDestino}"/>
 				<p:ajax event="rowUnselect"	listener="#{pasoDosCtrl.onRowUnselectDestino}" />  -->

@@ -17,14 +17,14 @@
 			</p:panelGrid>
 				<div class="centerDiv">
 					<b:panel id="idDivDatosPajeros" title="Datos de los pasajeros" collapsible="false">
-
+						<p:messages id="messages" showDetail="false" autoUpdate="true" closable="true" />
 						<b:row styleClass="fondoDiv" >
 								<b:column col-md="6">
 									<b:column col-md="6">
-										<h:outputLabel value="Nombres" />
+										<h:outputLabel for="idrNombre" value="Nombres" />
 									</b:column>
 									<b:column col-md="6">
-										<h:outputLabel  value="Apellidos" />
+										<h:outputLabel for="idrApellido" value="Apellidos" />
 									</b:column>
 								</b:column>
 								<b:column col-md="6">
@@ -32,7 +32,7 @@
 										<h:outputLabel value="Tipo Identificacion" />
 									</b:column>
 									<b:column col-md="4">
-										<h:outputLabel value="Número" />
+										<h:outputLabel for="idrNumero" value="Número" />
 									</b:column>
 									<b:column col-md="4">
 										<h:outputLabel value="País de Emision" />
@@ -43,10 +43,13 @@
 						<b:row styleClass="fondoDiv" >
 							<b:column col-md="6">
 								<b:column col-md="6">
-									<p:inputText value="#{pasoCuatroCtrl.clienteIngreso.nombreCli}"/>	
+									<p:inputText id="idrNombre"  label="Nombre"
+											value="#{pasoCuatroCtrl.clienteIngreso.nombreCli}">
+									</p:inputText>	
 								</b:column>
 								<b:column col-md="6">
-									<p:inputText value="#{pasoCuatroCtrl.clienteIngreso.apellidoCli}"/>
+									<p:inputText id="idrApellido"  label="Apellido"
+												value="#{pasoCuatroCtrl.clienteIngreso.apellidoCli}"/>
 								</b:column>
 							</b:column>
 							<b:column col-md="6">
@@ -56,12 +59,13 @@
 									value="#{pasoCuatroCtrl.clienteIngreso.identificacionCli}" effect="fold"
 									style="width:150px">
 									<f:selectItem itemLabel="Select" itemValue="" />
-									<f:selectItem itemLabel="Cedula" itemValue="1" />
+									<f:selectItem itemLabel="C&#233;dula" itemValue="1" />
 									<f:selectItem itemLabel="Pasaporte" itemValue="0" />
 								</p:selectOneMenu>
 							</b:column>
 								<b:column col-md="4">
-									<p:inputText style="width:150px" maxlength="10" 
+									<p:inputText id="idrNumero" style="width:150px" maxlength="10" 
+													label="N&#250;mero identificaci&#243;n" 
 												 value="#{pasoCuatroCtrl.clienteIngreso.pasaporte}"/>
 								</b:column>
 								<b:column col-md="4">
@@ -124,7 +128,7 @@
 							</p:column>
 	
 							<p:column headerText="Tipo Identificacion">
-								<h:outputText value="#{cli.identificacionCli}" />
+								<h:outputText value="#{cli.identificacionCli == 1 ? 'C&#233;dula' : 'Pasaporte'}" />
 							</p:column>
 	
 							<p:column headerText="Numero">
@@ -144,8 +148,8 @@
 							</p:column>
 
 							<p:column>
-								<p:commandButton id="idAddCli" icon="ui-icon-close" update="@all"
-										action="#{pasoCuatroCtrl.remove(cli)}"
+								<p:commandButton id="idRemoveP" icon="ui-icon-close" update="idTableClie"
+										action="#{pasoCuatroCtrl.remove(cli)}"  immediate="true"
 									    title="Agregar cliente" style="width:24px;height:24px;" />							
 								</p:column>
 					</p:dataTable>
@@ -155,7 +159,7 @@
 				<div id="idB" align="center">
 					<button class="button"
 						onclick="setStepIndex([{name:'index', value:2}]);return false">Atras</button>
-					<button class="button"
+					<button class="button" 
 						onclick="setStepIndex([{name:'index', value:4}]);return false">Siguiente</button>
 				</div>
 			</div>

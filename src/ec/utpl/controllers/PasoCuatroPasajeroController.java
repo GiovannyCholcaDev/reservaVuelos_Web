@@ -54,7 +54,9 @@ public class PasoCuatroPasajeroController {
 	
 	
 	public void agregarCliente(ActionEvent actionEvent){
-		if(pasoUnoCtrl.getNumPasajeroSelect().equals(clienteCol.size())){
+		String msg = this.validarPasajetosAdd(clienteIngreso);
+		if(msg != null && msg != ""){
+			JsfUtil.msgError(msg);
 			return;
 		}
 		clienteCol.add(clienteIngreso);
@@ -67,6 +69,32 @@ public class PasoCuatroPasajeroController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public String validarPasajetosAdd(Cliente clienteIngreso){
+		
+		if(pasoUnoCtrl.getNumPasajeroSelect().equals(clienteCol.size())){
+			return "No puede agregar m\u00e1s pasajeros";
+		}
+		
+		if(clienteIngreso.getNombreCli() == null || clienteIngreso.getNombreCli() == ""){
+			return "Ingrese el nombre del pasajero";
+		}
+		
+		if(clienteIngreso.getApellidoCli() == null || clienteIngreso.getApellidoCli() == ""){
+			return "Ingreses apellido del cliente";
+			
+		}
+		
+		if(clienteIngreso.getPasaporte() == null || clienteIngreso.getPasaporte() == ""){
+			return "Ingreses el n\u00famero de identificaci\u00f3n";
+		}
+		
+		if(clienteIngreso.getNacionalidad() == null || clienteIngreso.getNacionalidad() == ""){
+			return "Ingrese el pa\u00eds de emisi\u00f3n";
+		}
+		
+		return null;
 	}
 	
 	public String getLectura() {

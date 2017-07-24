@@ -3,17 +3,118 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
-		<p:panelGrid columns="1" style="width:100%">
-			<button
-				onclick="setStepIndex([{name:'index', value:4}]);return false">Atras</button>
-			<f:facet name="header">
-				<h:outputLabel value="Bienvenidos paso 6" />
-			</f:facet>
-		</p:panelGrid>
+
+		<h:form id="formPageConfirm">
+			<p:panelGrid columns="1" style="width:100%">
+				<f:facet name="header">
+					<h:outputLabel value="CONFIRMAR VUELO" />
+				</f:facet>
+			</p:panelGrid>
+			<div class="centerDiv">
+				<ui:include src="/pages/template/itinerario.xhtml" />
+				<b:panel title="Tarifa en d&#243;lares" collapsible="false">
+						<ui:include src="/pages/template/detallePagoTotal.xhtml" />
+				</b:panel>
+				<b:panel title="Detalle tarjeta" collapsible="false">
+						<b:row styleClass="fondoDiv" >
+							<b:column col-md="2" offset="1">
+								<h:outputLabel value="Total pasajeros:" />
+							</b:column>
+							<b:column col-md="2" >
+								<h:outputLabel value="#{pasoCuatroCtrl.clienteCol.size()}" />
+							</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv" >
+							<b:column col-md="2" offset="1">
+								<h:outputLabel value="Tarjeta" />
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Lugar de emision" />
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Banco emisor" />
+							</b:column>
+							<b:column col-md="3">
+								<h:outputLabel value="N&#250;mero de tarjeta" />
+							</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv cantidadLbl" >
+							<b:column col-md="2" offset="1">
+								<h:outputLabel value="#{pasoCincoCtrl.nombreTarjetaSelect}" />
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="#{pasoCincoCtrl.emitidaEnSelect}" />
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="#{pasoCincoCtrl.nombreBancoEmisorSelect}" />
+							</b:column>
+							<b:column col-md="3">
+								<h:outputLabel value="#{pasoCincoCtrl.numeroTarjetaPago}" />
+							</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv" >
+							<b:column col-md="2" offset="1">
+								<h:outputLabel value="Identificaci&#243;n" />
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Num Documento" />
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="Pa&#237;s emisi&#243;n" />
+							</b:column>
+						</b:row>
+						<b:row styleClass="fondoDiv cantidadLbl">
+							<b:column col-md="2" offset="1">
+								<h:outputLabel value="#{pasoCincoCtrl.nombreIdentificacion}" />
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="#{pasoCincoCtrl.numeroTarjetahabienteSelect}" />
+							</b:column>
+							<b:column col-md="2">
+								<h:outputLabel value="#{pasoCincoCtrl.nombrePaisEmisionSelect}" />
+							</b:column>
+							<b:column col-md="2" offset="3">
+								    <p:commandButton value="Confirmar Vuelo"  type="button" onclick="PF('dlg3').show();"
+								    id="withIcon"   icon="ui-icon-newwin" />
+							</b:column>
+						</b:row>
+						
+				</b:panel>
+				
+			
+				<div id="idB" align="center">
+					<button class="button"
+						onclick="setStepIndex([{name:'index', value:4}]);return false">Atras</button>
+				</div>			
+			</div>
+
+
+			<p:dialog header="Confirmar vuelo" widgetVar="dlg3" showEffect="explode"
+				hideEffect="bounce" height="100">
+					<b:row>
+						<b:column col-md="12">
+							<h:outputText value="Confirma que desea generar la reserva?." />
+						</b:column>
+					</b:row>
+					<p:separator/>
+					<b:row>
+						<b:column col-md="6">
+							<p:commandButton actionListener="#{pasoSeisCtrl.guardarVuelo}" id="idSaves"
+										 icon="ui-icon-disk" value="Guardar"
+										title="Guardar pasajeros" />
+						</b:column>
+						
+						<b:column col-md="6">
+							<p:commandButton value="Cancelar"  type="button"  onclick="PF('dlg3').hide();" icon=" ui-icon-close" />
+						</b:column>
+					</b:row>
+			</p:dialog>
+		</h:form>
 	</ui:define>
 
 </ui:composition>

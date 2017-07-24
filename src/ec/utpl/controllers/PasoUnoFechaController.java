@@ -93,6 +93,10 @@ public class PasoUnoFechaController {
 			this.fechaVueltaSelect = null;
 		} 
 	}
+	
+	public void onChancheDateIda(){
+		this.fechaVueltaSelect = null;
+	}
 
 	public List<Aeropuerto> completeAeropuertoOrigen(String query) {
 		System.out.println("entro en complete query: ");

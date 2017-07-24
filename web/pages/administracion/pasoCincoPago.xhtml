@@ -9,7 +9,7 @@
 <ui:composition template="../template/templateGeneral.xhtml">
 	<ui:define name="contenido">
 	<h:form id="formPagePago">
-
+			<h:inputHidden value="#{pasoSeisCtrl.lectura}" />
 			<p:panelGrid columns="1" style="width:100%">
 				<f:facet name="header">
 					<h:outputLabel value="SELECCIONA TU MEDIO DE PAGO" />
@@ -17,14 +17,202 @@
 			</p:panelGrid>
 			<div class="centerDiv">
 						<ui:include src="/pages/template/itinerario.xhtml" />
+					   <b:panel title="Tarifa en d&#243;lares" collapsible="false">
+							<ui:include src="/pages/template/totalAPagar.xhtml"/>
+						</b:panel>
+
+						<b:panel title="Pasajeros" collapsible="false">
+							<b:row styleClass="fondoDiv" >
+									<b:column col-md="1" offset="1">
+										 <h:outputLabel value="Nombres" />
+									</b:column>
+									<b:column col-md="1">
+										 <h:outputLabel value="Apellidos" />
+									</b:column>
+									<b:column col-md="2">
+										 <h:outputLabel value="Identificaci&#243;n" />
+									</b:column>
+									<b:column col-md="2">
+										 <h:outputLabel value="Nacionalidad" />
+									</b:column>
+									<b:column col-md="2">
+										 <h:outputLabel value="Ruc" />
+									</b:column>
+									<b:column col-md="2">
+										 <h:outputLabel value="Raz&#243;n Social" />
+									</b:column>
+							</b:row>
+								<ui:repeat value="#{pasoCuatroCtrl.clienteCol }" var="cli">
+									<b:row styleClass="fondoDiv" >
+										<b:column col-md="1" offset="1">
+											<h:outputText value="#{cli.nombreCli}" />
+										</b:column>
+										<b:column col-md="1">
+											<h:outputText value="#{cli.apellidoCli}" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{cli.pasaporte}" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{cli.nacionalidad}" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{cli.ruc}" />
+										</b:column>
+										<b:column col-md="2">
+											<h:outputText value="#{cli.razonSocial}" />
+										</b:column>
+									</b:row>
+								</ui:repeat>
+						</b:panel>
+
+				<b:panel title="Pago" collapsible="false">
+					<b:row styleClass="fondoDiv">
+						<b:column col-md="3">
+							<h:outputLabel value="Selecciona tu tarjeta:" />
+						</b:column>
+					</b:row>
+					<b:row >
+						<b:column col-md="2" offset="1">
+							<h:graphicImage library="img" width="150px" 
+							name="americanExpress.png" />
+						</b:column>
+						<b:column col-md="2">
+							<h:graphicImage library="img" width="150px" 
+							name="dinners.png" />
+						</b:column>
+						<b:column col-md="2">
+							<h:graphicImage library="img" width="150px" 
+							name="discover.png" />
+						</b:column>
+						<b:column col-md="2">
+							<h:graphicImage library="img" width="150px" 
+							name="masterCard.png" />
+						</b:column>
+						<b:column col-md="2">
+							<h:graphicImage library="img" width="150px" 
+							name="visa.png" />
+						</b:column>
+					</b:row>
+					<b:row styleClass="fondoDiv">
+						<p:selectOneRadio id="customRadio" value="#{pasoCincoCtrl.nombreTarjetaSelect}"
+								layout="custom">
+								<f:selectItem itemLabel="American Express" itemValue="American Express" />
+								<f:selectItem itemLabel="Dinners Club International" itemValue="Dinners Club International" />
+								<f:selectItem itemLabel="Discover" itemValue="Discover" />
+								<f:selectItem itemLabel="Master Card" itemValue="Master Card" />
+								<f:selectItem itemLabel="Visa" itemValue="Visa" />
+							</p:selectOneRadio>
+								
+						<b:column col-md="2" offset="1">
+								<p:radioButton id="opt1" for="customRadio" itemIndex="0" />
+						</b:column>
+						<b:column col-md="2">
+								<p:radioButton id="opt2" for="customRadio" itemIndex="1" />
+						</b:column>
+						<b:column col-md="2">
+								<p:radioButton id="opt3" for="customRadio" itemIndex="2" />
+						</b:column>
+						<b:column col-md="2">
+								<p:radioButton id="opt4" for="customRadio" itemIndex="3" />
+						</b:column>
+						<b:column col-md="2">
+								<p:radioButton id="opt5" for="customRadio" itemIndex="4" />
+						</b:column>
+						<br/> <br/> 
+					</b:row>
+					
+					<b:row styleClass="fondoDiv">
+						<h3>Informaci&#243;n tarjeta</h3>
+					</b:row>
 						
-						<b:row>
+					<b:row styleClass="fondoDiv">
+							<b:column col-md="3">
+								<h:outputLabel value="Emitida en:" />
+							</b:column>
+							<b:column col-md="2">
+								<p:selectOneMenu id="idna"
+									value="#{pasoCincoCtrl.emitidaEnSelect}"
+									effect="fold" style="width:150px">
+									<f:selectItem itemLabel="Select" itemValue="" />
+									<f:selectItems value="#{pasoCuatroCtrl.paisesCol}" />
+								</p:selectOneMenu>
+						</b:column>
+						<br/> <br/>
+					</b:row>
+					
+					<b:row styleClass="fondoDiv">
+							<b:column col-md="3">
+								<h:outputLabel value="Selecciona banco emisor:" />
+							</b:column>
+							<b:column col-md="2">
+								<p:selectOneMenu id="idban"
+									value="#{pasoCincoCtrl.nombreBancoEmisorSelect}"
+									effect="fold" style="width:150px">
+									<f:selectItem itemLabel="Select" itemValue="" />
+									<f:selectItems value="#{pasoCincoCtrl.banconEmisoresCol}" />
+								</p:selectOneMenu>
+						</b:column>
+						<br/> <br/>
+					</b:row>
+					<b:row styleClass="fondoDiv">
+						<b:column col-md="3">
+							<h:outputLabel value="N&#250;mero de tarjeta:" />
+						</b:column>
+						<b:column col-md="3">
+							<p:inputText value="#{pasoCincoCtrl.numeroTarjetaPago}"></p:inputText>
+						</b:column>
+						<br/> <br/>
+					</b:row>
+					<b:row styleClass="fondoDiv">
+						<h3>Documento de identificaci&#243;n</h3>
+					</b:row>
+					<b:row styleClass="fondoDiv">
+						<b:column col-md="3">
+							<h:outputLabel value="Tipo de documento de identificaci&#243;n:" />
+						</b:column>
+						<b:column col-md="3">
+							<p:selectOneMenu id="idIdentificacion"
+										value="#{pasoCincoCtrl.nombreIdentificacion}"
+										style="width:150px">
+										<f:selectItem itemLabel="Select" itemValue="" />
+									<f:selectItems value="#{pasoCincoCtrl.tipoDocumentosCol}" />
+							</p:selectOneMenu>
+						</b:column>
+					</b:row>
+					<b:row styleClass="fondoDiv">
+						<b:column col-md="3">
+							<h:outputLabel value="N°. de documento" />
+						</b:column>
+						<b:column col-md="3">
+							<p:inputText style="width:150px"
+								 value="#{pasoCincoCtrl.numeroTarjetahabienteSelect}"></p:inputText>
+						</b:column>
+					</b:row>
+					<b:row styleClass="fondoDiv">
+						<b:column col-md="3">
+							<h:outputLabel value="Pa&#237;s de emisi&#243;n:" />
+						</b:column>
+						<b:column col-md="3">
+							<p:selectOneMenu id="idpaisemi" value="#{pasoCincoCtrl.nombrePaisEmisionSelect}"
+											 effect="fold" style="width:150px">
+										<f:selectItem itemLabel="Select" itemValue="" />
+										<f:selectItems value="#{pasoCuatroCtrl.paisesCol}" />
+							</p:selectOneMenu>
+						</b:column>
+					</b:row>
+					
+					<ui:include src="/pages/template/detallePagoTotal.xhtml" />
+						<b:row styleClass="fondoDiv">
+						<br/> <br/>
 							<b:column col-md="10" offset="1">
 								<p:selectBooleanCheckbox value="#{pasoCincoCtrl.confirmar}" />
 								<h:outputLabel value=" &#160; He leído y estoy de acuerdo con las condiciones relacionadas a la compra. " />
 							</b:column>
+							<br/> <br/>
 						</b:row>
 
+					</b:panel>
 							<div id="idB" align="center">
 								<button class="button"
 									onclick="setStepIndex([{name:'index', value:3}]);return false">Atras</button>
